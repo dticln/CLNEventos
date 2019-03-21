@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xml>
+  <items>
+    <!-- Inicio das variaveis globais -->
+    <string name="app_title" value="Eventos do CLN" />
+    <string name="app_title_short" value="CLN Eventos" />
+    <string name="name_cpd_cln" value="Divisão de Tecnologia da Informação" />
+    <string name="name_csti" value="Central de Atendimento do Campus Litoral Norte" />
+    <string name="gov_header" value="Portal do Governo Brasileiro" />
+    <string name="gov_update" value="Atualize sua Barra de Governo" />
+    <string name="services_catalog" value="Catálogo de Serviços" />
+    <string name="ufrgs_initials" value="UFRGS" />
+    <string name="litoral" value="Litoral" />
+    <string name="ceclimar" value="CECLIMAR" />
+    <string name="others" value="Outros" />
+
+    <string name="ops" value="Ops!"/>
+    <string name="usr_ufrgs_label" value="Cartão UFRGS"/>
+    <string name="password" value="Senha"/>
+    <string name="login" value="Entrar"/>
+    <string name="login_temp" value="Página temporária de login para desenvolvimento. "/>
+  </items>
+</xml>

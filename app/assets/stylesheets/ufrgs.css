@@ -1,0 +1,38 @@
+﻿
+#barra-ufrgs {
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    line-height: 30px;
+    font-size: 90%;
+}
+
+#barra-ufrgs .wrapper-size {
+    margin: 0 auto;
+    height: 30px;
+    width: 80%;
+    max-width: 1200px;
+    background: url(../images/chama.jpg) left no-repeat;
+    padding-left: 50px;
+    box-sizing: border-box;
+}
+
+#barra-ufrgs ul {
+    margin: 0;
+    list-style: none;
+}
+
+#barra-ufrgs ul li:first-child {
+    border-right: #eee 1px solid;
+}
+
+#barra-ufrgs ul li {
+    padding: 0;
+    display: block;
+    float: left;
+}
+
+#barra-ufrgs a {
+    color: #aaa;
+    padding: 0 0.5em;
+}

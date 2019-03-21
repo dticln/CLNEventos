@@ -1,0 +1,107 @@
+﻿body {
+    background-color: rgba(2,88,151,1);
+}
+
+textarea {
+    resize: none !important;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+/* Estilo do cabeçalho das páginas -----------------------------------------*/
+.header-base {
+    background-color: rgba(2,88,151,1);
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.header {
+    margin-top: 80px;
+}
+
+    .header img {
+        height: 150px;
+        width: 150px;
+        float: left;
+    }
+
+    .header h1 {
+        float: left;
+        font-size: 2.80em;
+        margin-left: 20px;
+        margin-top: 0;
+        line-height: 1.25em;
+        color: white;
+        font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+        font-variant: small-caps;
+        /*text-shadow: 1px 1px #9DC3DB;*/
+    }
+
+        .header h1 > span {
+            font-size: 0.75em;
+            display: block;
+            line-height: 1.5em;
+        }
+
+@media (max-width: 997px) { /*Esconder informações em telas com menos de 998px de largura, para melhorar a usabilidade*/
+    .header h1 > span {
+        display: none;
+    }
+}
+.user {
+    margin-top: 0;
+}
+
+    .user form {
+        margin-left: 10px;
+        float: left;
+    }
+
+        .user form > .btn {
+            color: white;
+            background-color: #228DCD;
+        }
+
+@media (max-width: 699px) { /*Ajustar alinhamento para páginas com menos de 700px de largura*/
+    .user {
+        float: left;
+    }
+
+        .user > a {
+            margin-left: 17px;
+        }
+}
+
+.user > a {
+    float: right;
+    padding: 10px;
+    text-align: right;
+    color: white;
+}
+/* Fim do estilo do cabeçalho das páginas ----------------------------------*/
+
+
+/* Estilo do cabeçalho da página de login ----------------------------------*/
+.header .logo {
+    float: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.login-form {
+    color: #228DCD;
+}
+
+    .login-form > input {
+        margin-top: 10px;
+    }
+
+/* Fim do estilo do cabeçalho da página de login ---------------------------*/
+
+.alert {
+    margin-bottom: 0px;
+    margin-top: 20px;
+}
+
