@@ -8,7 +8,6 @@ use App\Models\Password;
 use App\Utils\UFRGSAuth;
 use Pure\Utils\Auth;
 use App\Utils\Helpers;
-use Pure\Utils\Res;
 
 /**
  * Controller de autenticação de usuário

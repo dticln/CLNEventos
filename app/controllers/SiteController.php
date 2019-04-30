@@ -2,11 +2,7 @@
 namespace App\Controllers;
 use Pure\Bases\Controller;
 use Pure\Utils\Request;
-use App\Models\Article;
-use App\Models\Category;
 use Pure\Utils\Auth;
-use App\Models\Link;
-use Pure\Utils\Session;
 
 /**
  * Controller principal
@@ -19,7 +15,7 @@ class SiteController extends Controller
 
 	public function index_action()
 	{
-		echo 'Hello world!';
+		$this->render('index', 'minimal');
 	}
 
 	/**

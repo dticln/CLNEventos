@@ -15,6 +15,8 @@ class User extends Model
 	public $ufrgs;
 	public $name;
 	public $password;
+	public $is_activated;
+	public $created;
 
 	/**
 	 * Verifica a permissão de determinado usuário de acordo com o cartão UFRGS
@@ -26,6 +28,7 @@ class User extends Model
 	 */
 	static function has_permission($ufrgs_id, $permission_name)
 	{
+	/*
 		$it = Permission::select('permission.hash')
 			->join('user_permission rel')
 			->on('permission.id = rel.permission')
@@ -33,7 +36,7 @@ class User extends Model
 			->on('usr.id = rel.user')
 			->where(['usr.ufrgs' => intval($ufrgs_id), 'usr.is_actived' => true, 'permission.hash' => $permission_name])
 			->execute();
-		return isset($it[0]) ? $it[0] : false;
+		return isset($it[0]) ? $it[0] : false;*/
 	}
 
 	/**

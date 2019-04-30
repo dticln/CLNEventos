@@ -459,6 +459,10 @@
     <Compile Include="app\controllers\ErrorController.php" />
     <Compile Include="app\controllers\LoginController.php" />
     <Compile Include="app\controllers\SiteController.php" />
+    <Compile Include="app\models\Category.php" />
+    <Compile Include="app\models\UserPermission.php" />
+    <Compile Include="app\models\Permission.php" />
+    <Compile Include="app\models\Event.php" />
     <Compile Include="app\models\Password.php" />
     <Compile Include="app\models\User.php" />
     <Compile Include="app\plugins\SimpleSaml.php" />
