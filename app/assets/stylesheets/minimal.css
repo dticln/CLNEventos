@@ -1,107 +1,65 @@
-﻿body {
-    background-color: rgba(2,88,151,1);
+﻿body,
+.default-background,
+.panel-heading,
+.input-group-addon-custom {
+    background-color: #294A70;
+    color: #FFFFFF;
 }
 
-textarea {
-    resize: none !important;
+.header-title {
+    margin-top: 40px;
 }
 
-a {
-    text-decoration: none !important;
+.content-row {
+    margin-top: 10px;
 }
 
-/* Estilo do cabeçalho das páginas -----------------------------------------*/
-.header-base {
-    background-color: rgba(2,88,151,1);
-    padding-top: 10px;
-    padding-bottom: 20px;
+.btn-custom,
+.input-group-addon-custom {
+    background-color: #F4A024;
+    border-color: #FFFFFF;
 }
-
-.header {
-    margin-top: 80px;
-}
-
-    .header img {
-        height: 150px;
-        width: 150px;
-        float: left;
-    }
-
-    .header h1 {
-        float: left;
-        font-size: 2.80em;
-        margin-left: 20px;
-        margin-top: 0;
-        line-height: 1.25em;
+    .btn-custom:hover,
+    .btn-custom:focus,
+    .btn-custom:active,
+    .btn-custom.active,
+    .open > .dropdown-toggle.btn-custom,
+    .input-group-addon-custom:hover,
+    .input-group-addon-custom:focus,
+    .input-group-addon-custom:active,
+    .input-group-addon-custom.active,
+    .input-group-addon-custom > .dropdown-toggle.btn-custom {
         color: white;
-        font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
-        font-variant: small-caps;
-        /*text-shadow: 1px 1px #9DC3DB;*/
+        background-color: #CB7D08 !important;
+        border-color: #FFFFFF !important;
     }
 
-        .header h1 > span {
-            font-size: 0.75em;
-            display: block;
-            line-height: 1.5em;
-        }
 
-@media (max-width: 997px) { /*Esconder informações em telas com menos de 998px de largura, para melhorar a usabilidade*/
-    .header h1 > span {
-        display: none;
-    }
-}
-.user {
-    margin-top: 0;
+.reverse-background {
+    background-color: #FFFFFF;
+    color: #294A70;
 }
 
-    .user form {
-        margin-left: 10px;
-        float: left;
-    }
-
-        .user form > .btn {
-            color: white;
-            background-color: #228DCD;
-        }
-
-@media (max-width: 699px) { /*Ajustar alinhamento para páginas com menos de 700px de largura*/
-    .user {
-        float: left;
-    }
-
-        .user > a {
-            margin-left: 17px;
-        }
-}
-
-.user > a {
-    float: right;
-    padding: 10px;
+.panel-title .icon {
     text-align: right;
-    color: white;
-}
-/* Fim do estilo do cabeçalho das páginas ----------------------------------*/
-
-
-/* Estilo do cabeçalho da página de login ----------------------------------*/
-.header .logo {
-    float: none;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-left: 5px;
+    list-style: none;
+    display: inline;
 }
 
-.login-form {
-    color: #228DCD;
+.btn-event-delete,
+.btn-event-edit {
+    cursor: pointer;
 }
 
-    .login-form > input {
-        margin-top: 10px;
-    }
 
-/* Fim do estilo do cabeçalho da página de login ---------------------------*/
-
-.alert {
-    margin-bottom: 0px;
-    margin-top: 20px;
+.panel-body {
+    border-color: #294A70;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0px 00px 5px 5px;
 }
 
+.event-name {
+    font-size: 20px;
+}

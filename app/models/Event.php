@@ -21,4 +21,14 @@ class Event extends Model
 	public $ends_at;
 	public $updated;
 	public $created;
+
+	public static function find_all_informations()
+	{
+		return Event::select(['event.*','usr.name user','ctg.name category_name', 'ctg.basecolor color'])
+			->join('user usr')
+			->on('event.owner = usr.id')
+			->join('category ctg')
+			->on('event.category = ctg.id')
+			->execute();
+	}
 }

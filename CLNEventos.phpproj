@@ -458,6 +458,7 @@
     <Compile Include="app\configs\env\production\variables.php" />
     <Compile Include="app\controllers\ErrorController.php" />
     <Compile Include="app\controllers\LoginController.php" />
+    <Compile Include="app\controllers\EventController.php" />
     <Compile Include="app\controllers\SiteController.php" />
     <Compile Include="app\models\Category.php" />
     <Compile Include="app\models\UserPermission.php" />
@@ -471,8 +472,10 @@
     <Compile Include="app\views\components\govbar.php" />
     <Compile Include="app\views\components\heads\minimal.php" />
     <Compile Include="app\views\components\javascripts\default.php" />
+    <Compile Include="app\views\layouts\dashboard.php" />
     <Compile Include="app\views\layouts\minimal.php" />
     <Compile Include="app\views\pages\error.php" />
+    <Compile Include="app\views\pages\event\index.php" />
     <Compile Include="app\views\pages\index.php" />
     <Compile Include="app\views\pages\login.php" />
     <Compile Include="pure\bases\Controller.php" />
@@ -631,6 +634,7 @@
     <Folder Include="app\views\pages" />
     <Folder Include="app\views" />
     <Folder Include="app" />
+    <Folder Include="app\views\pages\event\" />
     <Folder Include="pure\bases" />
     <Folder Include="pure\db" />
     <Folder Include="pure\exceptions" />
@@ -640,6 +644,8 @@
     <Folder Include="pure" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\assets\stylesheets\ceclimar-stylesheet.css" />
+    <Content Include="app\assets\stylesheets\cln-stylesheet.css" />
     <Content Include="app\assets\stylesheets\minimal.css" />
     <Content Include="app\assets\stylesheets\ufrgs.css" />
   </ItemGroup>

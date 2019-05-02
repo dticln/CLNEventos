@@ -45,6 +45,16 @@ class Helpers
 		return date('G:i - d/m/Y', $timestamp);
 	}
 
+	public static function interval_format($starts, $ends) {
+		$ts_starts = strtotime($starts);
+		$ts_ends = strtotime($ends);
+		if (date('d/m/Y', $ts_starts) == date('d/m/Y', $ts_ends)){
+			return 'De ' . date('d/m/Y', $ts_starts) . ' das ' . date('G:i', $ts_starts) . ' às ' . date('G:i', $ts_ends);
+		} else {
+			return 'De ' . date('d/m/Y', $ts_starts) . ' a ' . date('d/m/Y', $ts_ends);
+		}
+	}
+
 	/**
 	 * Gera um elemento HTML de paginação
 	 * @param mixed $limit limite de itens por página
