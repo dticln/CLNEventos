@@ -16,8 +16,18 @@ class EventController extends Controller
 
 	public function index_action()
 	{
-		$this->data['events'] = Event::find_all_informations();
 		$this->render('event/index', 'dashboard');
+	}
+
+	public function ajax_list_action()
+	{
+		$this->data['events'] = Event::find_all_informations();
+		$this->render_ajax('event/list');
+	}
+
+	public function ajax_insert_action()
+	{
+		$this->render_ajax('event/insert');
 	}
 
 	/**

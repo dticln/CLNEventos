@@ -14,6 +14,9 @@
     <string name="ceclimar" value="CECLIMAR" />
     <string name="others" value="Outros" />
 
+    <string name="cancel" value="Cancelar"/>
+    <string name="save" value="Salvar"/>
+    
     <string name="ops" value="Ops!"/>
     <string name="usr_ufrgs_label" value="Cartão UFRGS"/>
     <string name="password" value="Senha"/>

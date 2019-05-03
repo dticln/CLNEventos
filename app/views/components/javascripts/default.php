@@ -8,11 +8,15 @@ use Pure\Utils\DynamicHtml;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <?php if(PURE_ENV === 'production'): ?>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<?= DynamicHtml::link_script('bootstrap.min.js') ?>
 	<?= DynamicHtml::link_script('bootstrap-select/bootstrap-select.min.js') ?>
+	<?= DynamicHtml::link_script('common.min.js') ?>
 <?php else: ?>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<?= DynamicHtml::link_script('bootstrap.min.js') ?>
 	<?= DynamicHtml::link_script('bootstrap-select/bootstrap-select.min.js') ?>
+	<?= DynamicHtml::link_script('common.js') ?>
 <?php endif; ?>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

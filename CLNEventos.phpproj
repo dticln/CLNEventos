@@ -469,11 +469,16 @@
     <Compile Include="app\plugins\SimpleSaml.php" />
     <Compile Include="app\utils\Helpers.php" />
     <Compile Include="app\utils\UFRGSAuth.php" />
+    <Compile Include="app\views\components\feedback.php" />
     <Compile Include="app\views\components\govbar.php" />
     <Compile Include="app\views\components\heads\minimal.php" />
     <Compile Include="app\views\components\javascripts\default.php" />
+    <Compile Include="app\views\components\loading.php" />
+    <Compile Include="app\views\components\modal.php" />
     <Compile Include="app\views\layouts\dashboard.php" />
     <Compile Include="app\views\layouts\minimal.php" />
+    <Compile Include="app\views\pages\ajax\event\insert.php" />
+    <Compile Include="app\views\pages\ajax\event\list.php" />
     <Compile Include="app\views\pages\error.php" />
     <Compile Include="app\views\pages\event\index.php" />
     <Compile Include="app\views\pages\index.php" />
@@ -634,6 +639,7 @@
     <Folder Include="app\views\pages" />
     <Folder Include="app\views" />
     <Folder Include="app" />
+    <Folder Include="app\views\pages\ajax\event\" />
     <Folder Include="app\views\pages\event\" />
     <Folder Include="pure\bases" />
     <Folder Include="pure\db" />
@@ -644,6 +650,8 @@
     <Folder Include="pure" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\assets\scripts\common.js" />
+    <Content Include="app\assets\scripts\npm.js" />
     <Content Include="app\assets\stylesheets\ceclimar-stylesheet.css" />
     <Content Include="app\assets\stylesheets\cln-stylesheet.css" />
     <Content Include="app\assets\stylesheets\minimal.css" />
