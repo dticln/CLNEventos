@@ -16,9 +16,11 @@ use Pure\Utils\Res;
 	<?php if(PURE_ENV === 'production'): ?>
 		<?= DynamicHtml::link_css('ufrgs.min.css') ?>
 		<?= DynamicHtml::link_css('minimal.min.css') ?>
+		<?= DynamicHtml::link_css('bootstrap-datetimepicker/bootstrap-datetimepicker.min.css'); ?>
 	<?php else: ?>
 		<?= DynamicHtml::link_css('ufrgs.css') ?>
 		<?= DynamicHtml::link_css('minimal.css') ?>
+		<?= DynamicHtml::link_css('bootstrap-datetimepicker/bootstrap-datetimepicker.css'); ?>
 	<?php endif; ?>
 	<meta property="creator.productor" content="http://estruturaorganizacional.dados.gov.br/id/unidade-organizacional/200000" />
 </head>

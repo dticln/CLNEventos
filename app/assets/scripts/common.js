@@ -268,7 +268,6 @@ $(document).ready(function () {
     loadContent('event/ajax_list', '.content-event');
 });
 
-// @todo
 $('body').on('click', '.btn-event-insert', function () {
     loadForm('event/ajax_insert', {
         title: 'Adicionar evento',

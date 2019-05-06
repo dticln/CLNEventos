@@ -9,13 +9,23 @@ use Pure\Utils\DynamicHtml;
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <?php if(PURE_ENV === 'production'): ?>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<?= DynamicHtml::link_script('bootstrap.min.js') ?>
+	<?= DynamicHtml::link_script('moment/moment.min.js') ?>
+	<?= DynamicHtml::link_script('moment/locale/pt-br.min.js') ?>
+	<?= DynamicHtml::link_script('bootstrap/js/transition.min.js') ?>
+	<?= DynamicHtml::link_script('bootstrap/js/collapse.min.js') ?>
+	<?= DynamicHtml::link_script('bootstrap/bootstrap.min.js') ?>
 	<?= DynamicHtml::link_script('bootstrap-select/bootstrap-select.min.js') ?>
+	<?= DynamicHtml::link_script('bootstrap-datetimepicker/bootstrap-datetimepicker.min.js') ?>
 	<?= DynamicHtml::link_script('common.min.js') ?>
 <?php else: ?>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<?= DynamicHtml::link_script('bootstrap.min.js') ?>
+	<?= DynamicHtml::link_script('moment/moment.min.js') ?>
+	<?= DynamicHtml::link_script('moment/locale/pt-br.js') ?>
+	<?= DynamicHtml::link_script('bootstrap/js/transition.js') ?>
+	<?= DynamicHtml::link_script('bootstrap/js/collapse.js') ?>
+	<?= DynamicHtml::link_script('bootstrap/bootstrap.min.js') ?>
 	<?= DynamicHtml::link_script('bootstrap-select/bootstrap-select.min.js') ?>
+	<?= DynamicHtml::link_script('bootstrap-datetimepicker/bootstrap-datetimepicker.js') ?>
 	<?= DynamicHtml::link_script('common.js') ?>
 <?php endif; ?>
 

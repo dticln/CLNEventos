@@ -4,6 +4,7 @@ use Pure\Bases\Controller;
 use Pure\Utils\Request;
 use Pure\Utils\Auth;
 use App\Models\Event;
+use App\Models\Category;
 
 /**
  * Controller principal
@@ -27,6 +28,7 @@ class EventController extends Controller
 
 	public function ajax_insert_action()
 	{
+		$this->data['categories'] = Category::find();
 		$this->render_ajax('event/insert');
 	}
 
@@ -41,4 +43,12 @@ class EventController extends Controller
 		}
 	}
 
+	private function render_modal_response($package)
+	{
+		$this->data['title'] = $package['title'];
+		$this->data['body'] = $package['body'];
+		$this->data['modal'] = true;
+		$this->render_ajax('response');
+		exit();
+	}
 }

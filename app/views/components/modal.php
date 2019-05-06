@@ -7,7 +7,7 @@ use Pure\Utils\Res;
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content reverse-background">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<button type="button" class="close" data-dismiss="modal" tabindex="0" aria-label="Fechar">
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<h4 class="modal-title" id="dashboard-modal-label">Modal title</h4>
@@ -16,11 +16,11 @@ use Pure\Utils\Res;
 				...
 			</div>
 			<div class="modal-footer" id="dashboard-modal-footer">
-				<button class="btn btn-default btn-sm btn-modal-fullscreen">Modo de escrita</button>
-				<button type="button" class="btn btn-default" id="dashboard-modal-cancel" data-dismiss="modal">
+				<button class="btn btn-default btn-sm btn-modal-fullscreen" tabindex="0">Modo de escrita</button>
+				<button type="button" class="btn btn-default" id="dashboard-modal-cancel" data-dismiss="modal" tabindex="0">
 					<?= Res::str('cancel') ?>
 				</button>
-				<button type="button" class="" id="dashboard-modal-confirm">
+				<button type="button" class="" id="dashboard-modal-confirm" tabindex="0">
 					<?= Res::str('save') ?>
 				</button>
 			</div>

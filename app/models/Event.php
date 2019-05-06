@@ -12,9 +12,9 @@ use Pure\Bases\Model;
 class Event extends Model
 {
 	public $name;
+	public $category;
 	public $place;
 	public $description;
-	public $category;
 	public $owner;
 	public $last_updater;
 	public $starts_at;
