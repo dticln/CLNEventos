@@ -117,9 +117,6 @@ class EventController extends Controller
 		http_response_code(400);
 	}
 
-	/**
-	 * Verifica se usuário está logado
-	 */
 	public function before()
 	{
 		if (!Auth::is_authenticated())

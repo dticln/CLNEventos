@@ -28,16 +28,16 @@
 
     <!-- Ínicio da área de Evento -->
     <string name="no_events" value="Não há eventos para exibição"/>
-    <string name="event_name" value="Nome do Evento"/>
+    <string name="event_name" value="Nome do evento"/>
     <string name="event_name_ph" value="Exemplo: Portas Abertas 2019."/>
-    <string name="event_name_al" value="Digite o nome do Evento que deseja cadastrar. Exemplo: Portas Abertas 2019."/>
-    <string name="event_place" value="Local do Evento"/>
+    <string name="event_name_al" value="Digite o nome do evento que deseja cadastrar. Exemplo: Portas Abertas 2019."/>
+    <string name="event_place" value="Local do evento"/>
     <string name="event_place_ph" value="Exemplo: Campus Litoral Norte"/>
-    <string name="event_place_al" value="Digite o local em que o Evento ocorrerá. Exemplo: UFRGS Campus Litoral Norte. Rodovia RS 030, 11.700 – km 92."/>
-    <string name="event_cat_src" value="Categoria de Evento"/>
-    <string name="event_cat_none" value="Escolha uma categoria para o Evento"/>
-    <string name="event_body_label" value="Descrição do Evento"/>
-    <string name="event_body_al" value="Descreva com detalhes o Evento."/>
+    <string name="event_place_al" value="Digite o local em que o evento ocorrerá. Exemplo: UFRGS Campus Litoral Norte. Rodovia RS 030, 11.700 – km 92."/>
+    <string name="event_cat_src" value="Categoria de evento"/>
+    <string name="event_cat_none" value="Escolha uma categoria para o evento"/>
+    <string name="event_body_label" value="Descrição do evento"/>
+    <string name="event_body_al" value="Descreva com detalhes o evento."/>
     <string name="event_star_date" value="Data de início"/>
     <string name="event_star_date_ph" value="Exemplo: 10/04/2019 16:00"/>
     <string name="event_star_date_al" value="Digite a data e hora de início do evento. Exemplo: 10/04/2019 16:00"/>
@@ -47,16 +47,16 @@
 
     <!-- Início da área de cadastro de Novo Evento -->
     <array name="event_insert_success">
-      <string name="title" value="Novo Evento cadastrado"/>
+      <string name="title" value="Novo evento cadastrado"/>
       <string name="body_p1" value="Evento "/>
       <string name="body_p2" value=" foi cadastrado com sucesso."/>
     </array>
     <array name="event_insert_fail">
-      <string name="title" value="Falha ao cadastrar novo Evento"/>
-      <string name="body" value="Não foi possível cadastrar um novo Evento. Contate o Divisão de Tecnologia da Informação."/>
+      <string name="title" value="Falha ao cadastrar novo evento"/>
+      <string name="body" value="Não foi possível cadastrar um novo evento. Contate o Divisão de Tecnologia da Informação."/>
     </array>
     <array name="event_insert_date_fail">
-      <string name="title" value="Falha ao cadastrar novo Evento"/>
+      <string name="title" value="Falha ao cadastrar novo evento"/>
       <string name="body" value="A data de início do evento deve ser anterior à data de término."/>
     </array>
     <!-- Final da área de cadastro de Novo Evento -->
@@ -68,11 +68,11 @@
       <string name="body_p2" value=" foi atualizado com sucesso."/>
     </array>
     <array name="event_update_fail">
-      <string name="title" value="Falha ao atualizar Evento"/>
-      <string name="body" value="Não foi possível atualizar o Evento. Contate o Divisão de Tecnologia da Informação."/>
+      <string name="title" value="Falha ao atualizar evento"/>
+      <string name="body" value="Não foi possível atualizar o evento. Contate o Divisão de Tecnologia da Informação."/>
     </array>
     <array name="event_update_date_fail">
-      <string name="title" value="Falha ao atualizar Evento"/>
+      <string name="title" value="Falha ao atualizar evento"/>
       <string name="body" value="A data de início do evento deve ser anterior à data de término."/>
     </array>
     <!-- Final da área de autalização de Evento -->
@@ -85,12 +85,9 @@
       <string name="body_p2" value=" foi excluído com sucesso."/>
     </array>
     <array name="event_delete_fail">
-      <string name="title" value="Falha ao excluir Evento"/>
-      <string name="body" value="Não foi possível excluir o Evento. Contate o Divisão de Tecnologia da Informação."/>
+      <string name="title" value="Falha ao excluir evento"/>
+      <string name="body" value="Não foi possível excluir o evento. Contate o Divisão de Tecnologia da Informação."/>
     </array>
     <!-- Final da área de exclusão de Evento -->
-    
-    <!-- Final da área de Evento -->
-  
   </items>
 </xml>
