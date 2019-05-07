@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Password;
 use App\Utils\UFRGSAuth;
 use Pure\Utils\Auth;
+use Pure\Routes\UrlManager;
 use App\Utils\Helpers;
 
 /**
@@ -46,7 +47,7 @@ class LoginController extends Controller
 			{
 				if($this->do_login($credential))
 				{
-					Request::redirect('site/index');
+					$this->redirect_to_callback();
 					exit();
 				}
 			}
@@ -57,7 +58,7 @@ class LoginController extends Controller
 			UFRGSAuth::authenticate();
 			if(Auth::is_authenticated())
 			{
-				Request::redirect('site/index');
+				$this->redirect_to_callback();
 			} else {
 				Request::redirect('error/deny');
 			}
@@ -101,4 +102,12 @@ class LoginController extends Controller
 		return false;
 	}
 
+	private function redirect_to_callback() {
+		$callback = $this->params->from_GET('callback');
+		if(Request::has_route($callback)) {
+			Request::redirect($callback);
+		} else {
+			Request::redirect('site/index');
+		}
+	}
 }

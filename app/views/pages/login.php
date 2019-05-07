@@ -2,6 +2,7 @@
 namespace App\Views\Pages;
 use Pure\Utils\DynamicHtml;
 use Pure\Utils\Res;
+use Pure\Utils\Params;
 ?>
 
 <div class="container">
@@ -15,7 +16,7 @@ use Pure\Utils\Res;
 	</div>
 	<?php endif; ?>
 
-	<form class="col-md-4 col-md-offset-4 login-form" action="<?= DynamicHtml::link_to('login/do') ?>" method="POST">
+	<form class="col-md-4 col-md-offset-4 login-form" action="<?= DynamicHtml::link_to('login/do&callback=' . Params::get_instance()->from_GET('callback')) ?>" method="POST">
 		<label for="ufrgs_id" class="sr-only">
 			<?= Res::str('usr_ufrgs_label') ?>
 		</label>

@@ -13,36 +13,37 @@
     <string name="litoral" value="Litoral" />
     <string name="ceclimar" value="CECLIMAR" />
     <string name="others" value="Outros" />
-
     <string name="cancel" value="Cancelar"/>
     <string name="save" value="Salvar"/>
-    
     <string name="ops" value="Ops!"/>
     <string name="usr_ufrgs_label" value="Cartão UFRGS"/>
     <string name="password" value="Senha"/>
     <string name="login" value="Entrar"/>
     <string name="login_temp" value="Página temporária de login para desenvolvimento. "/>
+    <!-- Final das variaveis globais -->
 
+    <!-- Início área de cadastro de Novo Evento -->
     <string name="event_name" value="Nome do Evento"/>
     <string name="event_name_ph" value="Exemplo: Portas Abertas 2019."/>
     <string name="event_name_al" value="Digite o nome do Evento que deseja cadastrar. Exemplo: Portas Abertas 2019."/>
-    
     <string name="event_place" value="Local do Evento"/>
     <string name="event_place_ph" value="Exemplo: Campus Litoral Norte"/>
     <string name="event_place_al" value="Digite o local em que o Evento ocorrerá. Exemplo: UFRGS Campus Litoral Norte. Rodovia RS 030, 11.700 – km 92."/>
-    
     <string name="event_cat_src" value="Categoria de Evento"/>
     <string name="event_cat_none" value="Escolha uma categoria para o Evento"/>
-    
     <string name="event_body_label" value="Descrição do Evento"/>
     <string name="event_body_al" value="Descreva com detalhes o Evento."/>
-    
     <string name="event_star_date" value="Data de início"/>
     <string name="event_star_date_ph" value="Exemplo: 10/04/2019 16:00"/>
     <string name="event_star_date_al" value="Digite a data e hora de início do evento. Exemplo: 10/04/2019 16:00"/>
-
     <string name="event_end_date" value="Data de término"/>
     <string name="event_end_date_ph" value="Exemplo: 10/04/2019 19:00"/>
     <string name="event_end_date_al" value="Digite a data e hora de término do evento. Exemplo: 10/04/2019 19:00"/>
+    <array name="event_insert_error">
+      <string name="title" value="Problema ao cadastrar Novo Evento"/>
+      <string name="body" value="Não foi possível cadastrar um Novo Evento. Contate o Divisão de Tecnologia da Informação."/>
+    </array>
+    <!-- Final da área de cadastro de Novo Evento -->
+  
   </items>
 </xml>

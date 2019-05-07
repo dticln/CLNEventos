@@ -3,8 +3,11 @@ namespace App\Controllers;
 use Pure\Bases\Controller;
 use Pure\Utils\Request;
 use Pure\Utils\Auth;
+use Pure\Utils\Res;
 use App\Models\Event;
 use App\Models\Category;
+use Pure\Routes\UrlManager;
+
 
 /**
  * Controller principal
@@ -28,8 +31,28 @@ class EventController extends Controller
 
 	public function ajax_insert_action()
 	{
-		$this->data['categories'] = Category::find();
-		$this->render_ajax('event/insert');
+		if (Request::is_POST()) {
+			$infos = $this->params->unpack('POST', [
+				'new-event-name',
+				'new-event-place',
+				'new-event-category',
+				'new-event-start',
+				'new-event-end',
+				'new-event-body'
+			]);
+			if ($infos) {
+				// @todo cadastrar
+				$response = [ 'title' => 'a', 'body' => 'b', 'modal' => true];
+			} else {
+				$response = Res::arr('event_insert_error');
+			}
+			$this->render_modal_response($response);
+			exit();
+		} else {
+			$this->data['categories'] = Category::find();
+			$this->render_ajax('event/insert');
+			exit();
+		}
 	}
 
 	/**
@@ -39,7 +62,7 @@ class EventController extends Controller
 	{
 		if (!Auth::is_authenticated())
 		{
-			Request::redirect('login/do');
+			Request::redirect('login/do&callback=' . $this->params->from_GET('PurePage'));
 		}
 	}
 

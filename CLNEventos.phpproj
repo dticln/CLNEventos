@@ -180,8 +180,6 @@
     <Compile Include="app\assets\scripts\ckeditor\plugins\about\dialogs\hidpi\logo_ckeditor.png" />
     <Compile Include="app\assets\scripts\ckeditor\plugins\about\dialogs\about.js" />
     <Compile Include="app\assets\scripts\ckeditor\plugins\about\dialogs\logo_ckeditor.png" />
-    <Compile Include="app\assets\scripts\ckeditor\plugins\autosave\css\autosave.min.css" />
-    <Compile Include="app\assets\scripts\ckeditor\plugins\autosave\js\extensions.min.js" />
     <Compile Include="app\assets\scripts\ckeditor\plugins\clipboard\dialogs\paste.js" />
     <Compile Include="app\assets\scripts\ckeditor\plugins\colordialog\dialogs\colordialog.css" />
     <Compile Include="app\assets\scripts\ckeditor\plugins\colordialog\dialogs\colordialog.js" />
@@ -479,6 +477,7 @@
     <Compile Include="app\views\layouts\minimal.php" />
     <Compile Include="app\views\pages\ajax\event\insert.php" />
     <Compile Include="app\views\pages\ajax\event\list.php" />
+    <Compile Include="app\views\pages\ajax\response.php" />
     <Compile Include="app\views\pages\error.php" />
     <Compile Include="app\views\pages\event\index.php" />
     <Compile Include="app\views\pages\index.php" />
@@ -532,9 +531,6 @@
     <Folder Include="app\assets\scripts\ckeditor\plugins\about\dialogs\hidpi" />
     <Folder Include="app\assets\scripts\ckeditor\plugins\about\dialogs" />
     <Folder Include="app\assets\scripts\ckeditor\plugins\about" />
-    <Folder Include="app\assets\scripts\ckeditor\plugins\autosave\css" />
-    <Folder Include="app\assets\scripts\ckeditor\plugins\autosave\js" />
-    <Folder Include="app\assets\scripts\ckeditor\plugins\autosave" />
     <Folder Include="app\assets\scripts\ckeditor\plugins\clipboard\dialogs" />
     <Folder Include="app\assets\scripts\ckeditor\plugins\clipboard" />
     <Folder Include="app\assets\scripts\ckeditor\plugins\colordialog\dialogs" />
@@ -679,9 +675,9 @@
     <Content Include="app\assets\scripts\bootstrap\js\util\index.js" />
     <Content Include="app\assets\scripts\bootstrap\js\util\sanitizer.js" />
     <Content Include="app\assets\scripts\common.js" />
+    <Content Include="app\assets\scripts\controller.js" />
     <Content Include="app\assets\scripts\moment\locale\pt-br.js" />
     <Content Include="app\assets\scripts\moment\moment.min.js" />
-    <Content Include="app\assets\scripts\npm.js" />
     <Content Include="app\assets\stylesheets\bootstrap-datetimepicker\bootstrap-datetimepicker-standalone.css" />
     <Content Include="app\assets\stylesheets\bootstrap-datetimepicker\bootstrap-datetimepicker.css" />
     <Content Include="app\assets\stylesheets\bootstrap-datetimepicker\bootstrap-datetimepicker.min.css" />

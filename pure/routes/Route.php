@@ -73,7 +73,7 @@ class Route
 
 	/**
 	 * Compara a rota atual com a rota enviada por parametro
-	 * São consideradas rotas iguais aquelas que possuem 
+	 * São consideradas rotas iguais aquelas que possuem
 	 * o mesmo controller e a mesma action.
 	 *
 	 * @param Route $route comparada
@@ -81,8 +81,14 @@ class Route
 	 */
 	public function equals(Route $route)
 	{
-		return (strtolower($route->controller) === strtolower($this->controller) && 
+		return (strtolower($route->controller) === strtolower($this->controller) &&
 				strtolower($route->action) === strtolower($this->action));
 	}
 
+	public function __toString()
+	{
+		return strtolower(str_replace('Controller', '', $this->controller) . '/' .
+			str_replace('_action', '', $this->action) . '/' .
+			$this->param);
+	}
 }

@@ -107,4 +107,15 @@ class Request
 	{
 		return $_SERVER['REQUEST_METHOD'] === 'POST';
 	}
+
+	public static function has_route($url)
+	{
+		$exploded_url = explode('/', $url);
+		$route = new Route(
+			(isset($exploded_url[0])) ? $exploded_url[0] : '',
+			(isset($exploded_url[1])) ? $exploded_url[1] : '',
+			(isset($exploded_url[2])) ? $exploded_url[2] : ''
+		);
+		return UrlManager::get_instance()->route_exists($route);
+	}
 }

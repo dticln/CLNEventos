@@ -11,22 +11,22 @@ use Pure\Utils\DynamicHtml;
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<?= DynamicHtml::link_script('moment/moment.min.js') ?>
 	<?= DynamicHtml::link_script('moment/locale/pt-br.min.js') ?>
-	<?= DynamicHtml::link_script('bootstrap/js/transition.min.js') ?>
 	<?= DynamicHtml::link_script('bootstrap/js/collapse.min.js') ?>
 	<?= DynamicHtml::link_script('bootstrap/bootstrap.min.js') ?>
 	<?= DynamicHtml::link_script('bootstrap-select/bootstrap-select.min.js') ?>
 	<?= DynamicHtml::link_script('bootstrap-datetimepicker/bootstrap-datetimepicker.min.js') ?>
 	<?= DynamicHtml::link_script('common.min.js') ?>
+	<?= DynamicHtml::link_script('controller.js') ?>
 <?php else: ?>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<?= DynamicHtml::link_script('moment/moment.min.js') ?>
 	<?= DynamicHtml::link_script('moment/locale/pt-br.js') ?>
-	<?= DynamicHtml::link_script('bootstrap/js/transition.js') ?>
 	<?= DynamicHtml::link_script('bootstrap/js/collapse.js') ?>
 	<?= DynamicHtml::link_script('bootstrap/bootstrap.min.js') ?>
 	<?= DynamicHtml::link_script('bootstrap-select/bootstrap-select.min.js') ?>
 	<?= DynamicHtml::link_script('bootstrap-datetimepicker/bootstrap-datetimepicker.js') ?>
 	<?= DynamicHtml::link_script('common.js') ?>
+	<?= DynamicHtml::link_script('controller.js') ?>
 <?php endif; ?>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

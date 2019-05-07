@@ -263,19 +263,3 @@ function activateFullModal() {
     $('.modal-dialog').addClass('modal-fullscreen');
     $('.cke_contents').css('height', '400px');
 }
-
-$(document).ready(function () {
-    loadContent('event/ajax_list', '.content-event');
-});
-
-$('body').on('click', '.btn-event-insert', function () {
-    loadForm('event/ajax_insert', {
-        title: 'Adicionar evento',
-        button: 'Adicionar',
-        buttonClass: 'btn btn-primary',
-        buttonAction: function () {
-            $('#new-event .submit').click();
-        }
-    });
-});
-
