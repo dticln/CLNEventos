@@ -20,9 +20,14 @@
     <string name="password" value="Senha"/>
     <string name="login" value="Entrar"/>
     <string name="login_temp" value="Página temporária de login para desenvolvimento. "/>
+    <array name="db_error">
+      <string name="title" value="Problema ao processar requisição"/>
+      <string name="body" value="Não foi possível processar a requisição solicitada. Contate o Divisão de Tecnologia da Informação."/>
+    </array>
     <!-- Final das variaveis globais -->
 
-    <!-- Início área de cadastro de Novo Evento -->
+    <!-- Ínicio da área de Evento -->
+    <string name="no_events" value="Não há eventos para exibição"/>
     <string name="event_name" value="Nome do Evento"/>
     <string name="event_name_ph" value="Exemplo: Portas Abertas 2019."/>
     <string name="event_name_al" value="Digite o nome do Evento que deseja cadastrar. Exemplo: Portas Abertas 2019."/>
@@ -39,11 +44,53 @@
     <string name="event_end_date" value="Data de término"/>
     <string name="event_end_date_ph" value="Exemplo: 10/04/2019 19:00"/>
     <string name="event_end_date_al" value="Digite a data e hora de término do evento. Exemplo: 10/04/2019 19:00"/>
-    <array name="event_insert_error">
-      <string name="title" value="Problema ao cadastrar Novo Evento"/>
-      <string name="body" value="Não foi possível cadastrar um Novo Evento. Contate o Divisão de Tecnologia da Informação."/>
+
+    <!-- Início da área de cadastro de Novo Evento -->
+    <array name="event_insert_success">
+      <string name="title" value="Novo Evento cadastrado"/>
+      <string name="body_p1" value="Evento "/>
+      <string name="body_p2" value=" foi cadastrado com sucesso."/>
+    </array>
+    <array name="event_insert_fail">
+      <string name="title" value="Falha ao cadastrar novo Evento"/>
+      <string name="body" value="Não foi possível cadastrar um novo Evento. Contate o Divisão de Tecnologia da Informação."/>
+    </array>
+    <array name="event_insert_date_fail">
+      <string name="title" value="Falha ao cadastrar novo Evento"/>
+      <string name="body" value="A data de início do evento deve ser anterior à data de término."/>
     </array>
     <!-- Final da área de cadastro de Novo Evento -->
+    
+    <!-- Início da área de atualização de Evento -->
+    <array name="event_update_success">
+      <string name="title" value="Evento atualizado"/>
+      <string name="body_p1" value="Evento "/>
+      <string name="body_p2" value=" foi atualizado com sucesso."/>
+    </array>
+    <array name="event_update_fail">
+      <string name="title" value="Falha ao atualizar Evento"/>
+      <string name="body" value="Não foi possível atualizar o Evento. Contate o Divisão de Tecnologia da Informação."/>
+    </array>
+    <array name="event_update_date_fail">
+      <string name="title" value="Falha ao atualizar Evento"/>
+      <string name="body" value="A data de início do evento deve ser anterior à data de término."/>
+    </array>
+    <!-- Final da área de autalização de Evento -->
+
+    <!-- Início da área de exclusão de Evento -->
+    <string name="event_delete_question" value="Você deseja excluír o seguinte evento?"/>
+    <array name="event_delete_success">
+      <string name="title" value="Evento excluído"/>
+      <string name="body_p1" value="Evento "/>
+      <string name="body_p2" value=" foi excluído com sucesso."/>
+    </array>
+    <array name="event_delete_fail">
+      <string name="title" value="Falha ao excluir Evento"/>
+      <string name="body" value="Não foi possível excluir o Evento. Contate o Divisão de Tecnologia da Informação."/>
+    </array>
+    <!-- Final da área de exclusão de Evento -->
+    
+    <!-- Final da área de Evento -->
   
   </items>
 </xml>

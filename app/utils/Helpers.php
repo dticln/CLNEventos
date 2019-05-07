@@ -42,7 +42,7 @@ class Helpers
 	public static function date_format($time)
 	{
 		$timestamp = strtotime($time);
-		return date('G:i - d/m/Y', $timestamp);
+		return date('d/m/Y G:i', $timestamp);
 	}
 
 	public static function interval_format($starts, $ends) {

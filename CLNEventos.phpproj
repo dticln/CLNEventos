@@ -475,6 +475,8 @@
     <Compile Include="app\views\components\modal.php" />
     <Compile Include="app\views\layouts\dashboard.php" />
     <Compile Include="app\views\layouts\minimal.php" />
+    <Compile Include="app\views\pages\ajax\event\delete.php" />
+    <Compile Include="app\views\pages\ajax\event\update.php" />
     <Compile Include="app\views\pages\ajax\event\insert.php" />
     <Compile Include="app\views\pages\ajax\event\list.php" />
     <Compile Include="app\views\pages\ajax\response.php" />
