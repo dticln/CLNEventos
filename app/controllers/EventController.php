@@ -26,6 +26,13 @@ class EventController extends Controller
 	public function ajax_list_action()
 	{
 		$this->data['events'] = Event::find_all_informations();
+		foreach($this->data['events'] as $event) {
+			if(strtotime($event->ends_at) <= strtotime('now')) {
+				$event->finished = true;
+			} else {
+				$event->finished = false;
+			}
+		}
 		$this->render_ajax('event/list');
 	}
 
@@ -97,6 +104,7 @@ class EventController extends Controller
 				exit();
 			}
 			http_response_code(400);
+			exit();
 		}
 	}
 
@@ -107,6 +115,7 @@ class EventController extends Controller
 			$id = $this->params->from_POST('event-id');
 			$response = $this->exclusion_procedure($id);
 			$this->render_modal_response($response);
+			exit();
 		}
 		else if (intval($id))
 		{
@@ -133,7 +142,7 @@ class EventController extends Controller
 			$database->begin();
 			$start_date = strtotime(str_replace('/', '-', $start));
 			$end_date = strtotime(str_replace('/', '-', $end));
-			if ($start_date > $end_date) {
+			if ($start_date >= $end_date) {
 				$database->rollback();
 				$response = Res::arr('event_insert_date_fail');
 				return $response;
@@ -141,8 +150,8 @@ class EventController extends Controller
 			$new = new Event();
 			$new->name = $name;
 			$new->place = $place;
-			$new->starts_at = date('Y-m-d H:i:s', $start);
-			$new->ends_at = date('Y-m-d H:i:s', $end);
+			$new->starts_at = date('Y-m-d H:i:s', $start_date);
+			$new->ends_at = date('Y-m-d H:i:s', $end_date);
 			$new->description = $body;
 			$new->owner = $this->session->get('uinfo')->id;
 			$category = Category::find($category_id);
@@ -159,7 +168,6 @@ class EventController extends Controller
 			{
 				$database->rollback();
 				$response = Res::arr('event_insert_fail');
-				return $response;
 			}
 			$database->commit();
 		}
@@ -181,7 +189,7 @@ class EventController extends Controller
 			if($event) {
 				$start_date = strtotime(str_replace('/', '-', $start));
 				$end_date = strtotime(str_replace('/', '-', $end));
-				if ($start_date > $end_date) {
+				if ($start_date >= $end_date) {
 					$database->rollback();
 					$response = Res::arr('event_update_date_fail');
 					return $response;
@@ -205,13 +213,11 @@ class EventController extends Controller
 				{
 					$database->rollback();
 					$response = Res::arr('event_update_fail');
-					return $response;
 				}
 			} else
 			{
 				$database->rollback();
 				$response = Res::arr('event_update_fail');
-				return $response;
 			}
 			$database->commit();
 		}
@@ -243,6 +249,7 @@ class EventController extends Controller
 				}
 				else
 				{
+					$database->rollback();
 					$response = Res::arr('event_delete_fail');
 				}
 				$database->commit();

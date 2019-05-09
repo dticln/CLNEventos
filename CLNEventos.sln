@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.28711.60
+VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{A0786B88-2ADB-4C21-ABE8-AA2D79766269}") = "CLNEventos", "CLNEventos.phpproj", "{8A08C16F-3FB4-417C-BC9F-5BB835F24767}"
+Project("{A0786B88-2ADB-4C21-ABE8-AA2D79766269}") = "CLNEventos", "CLNEventos.phpproj", "{A08ED612-6B68-4C11-8117-BBFCE52CB8BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +11,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8A08C16F-3FB4-417C-BC9F-5BB835F24767}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A08C16F-3FB4-417C-BC9F-5BB835F24767}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A08ED612-6B68-4C11-8117-BBFCE52CB8BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A08ED612-6B68-4C11-8117-BBFCE52CB8BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2FB50E64-0305-4938-86E4-40A61006A344}
+		SolutionGuid = {28997747-2D4C-43C8-A3A3-526B4CB57417}
 	EndGlobalSection
 EndGlobal

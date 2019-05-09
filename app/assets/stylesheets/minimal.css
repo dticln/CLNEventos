@@ -70,6 +70,10 @@
     text-align: center;
 }
 
+.jumbotron .content p {
+    font-size: 16px;
+}
+
     .loading > div {
         width: 18px;
         height: 18px;

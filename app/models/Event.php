@@ -29,6 +29,7 @@ class Event extends Model
 			->on('event.owner = usr.id')
 			->join('category ctg')
 			->on('event.category = ctg.id')
+			->order_by(['event.ends_at' => 'DESC'])
 			->execute();
 	}
 }

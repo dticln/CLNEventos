@@ -13,38 +13,110 @@ use App\Utils\Helpers;
 <?php foreach($events as $event): ?>
 	<div id="accordion" class="panel-group" role="tablist" aria-multiselectable="true">
 		<!-- Início da área de Cabeçalho do Evento -->
-		<div class="panel-heading" role="tab" 
-			id="heading-event-<?= $event->id ?>" 
-			style="background-color: <?= $event->color ?>">
+		<div class="panel-heading" role="tab"
+			<?= $event->finished ? 'style="background-color: #606060"' : '' ?>
+			id="heading-event-<?= $event->id ?>">
 			<div class="panel-title">
-				<a class="collapsed" role="button" 
-					data-toggle="collapse" 
-					data-parent="#accordion" 
-					href="#collapse-event-<?= $event->id ?>" 
-					aria-expanded="false" 
-					aria-controls="collapse-event-<?= $event->id ?>" 
-					aria-label="Ver detalhes do evento <?= $event->name ?>">
+				<a class="collapsed" role="button"
+					data-toggle="collapse"
+					data-parent="#accordion"
+					href="#collapse-event-<?= $event->id ?>"
+					aria-expanded="false"
+					aria-controls="collapse-event-<?= $event->id ?>"
+					aria-label="
+						<?= $event->finished ? 
+							'Ver detalhes do evento encerrado' : 
+							'Ver detalhes do evento ' ?> 
+						<?= $event->name ?>">
 					<span class="event-name" id="<?= $event->id ?>">
-						<?= $event->name ?>
+						<?= Helpers::str_limit($event->name, 25) ?>
 					</span>
 				</a>
-				<small>
-					<?= $event->category_name ?>
-				</small>
-				<span style="float:right">
+				<!-- Início para área de informações para grandes resoluções -->
+				<span style="float:right" class="visible-lg">
+					<small class="badge" style="background-color: <?= $event->color ?>">
+						<?= $event->category_name ?>
+						<span class="glyphicon glyphicon-tags"
+							aria-hidden="true"></span>
+					</small>
 					<span class="icon glyphicon glyphicon-time"></span>
 					<span class="icon" tabindex="0">
-						<?= Helpers::interval_format($event->starts_at, $event->ends_at) ?>
+						<?= Helpers::interval_format($event->starts_at, $event->ends_at) ?> 
 					</span>
-					<span class="icon glyphicon glyphicon-pencil btn-event-edit" 
-						id="<?= $event->id ?>" 
-						tabindex="0" 
-						aria-label="Editar o evento <?= $event->name ?>"></span>
-					<span class="icon glyphicon glyphicon-trash btn-event-delete" 
-						id="<?= $event->id ?>" 
-						tabindex="0" 
-						aria-label="Excluir o evento <?= $event->name ?>"></span>
+					<?php if(!$event->finished): ?>
+						<span class="icon glyphicon glyphicon-pencil btn-event-edit"
+							id="<?= $event->id ?>"
+							tabindex="0"
+							aria-label="Editar o evento <?= $event->name ?>"></span>
+						<span class="icon glyphicon glyphicon-trash btn-event-delete"
+							id="<?= $event->id ?>"
+							tabindex="0"
+							aria-label="Excluir o evento <?= $event->name ?>"></span>
+					<?php else: ?>
+						<small class="badge" style="background-color: #707070; color: white;">
+							Encerrado
+							<span class="glyphicon glyphicon-info-sign"
+								aria-hidden="true"></span>
+						</small>
+					<?php endif ?>
 				</span>
+				<!-- Término para área de informações para grandes resoluções -->
+				<!-- Início para área de informações para resolução média -->
+				<span class="visible-md">
+					<small style="display: inline-block">
+						<span class="icon glyphicon glyphicon-time"></span>
+						<span class="icon" tabindex="0">
+							<?= Helpers::interval_format($event->starts_at, $event->ends_at) ?>
+						</span>
+					</small>
+					<span style="float:right;">
+						<?php if(!$event->finished): ?>
+							<span class="icon glyphicon glyphicon-pencil btn-event-edit"
+								id="<?= $event->id ?>"
+								tabindex="0"
+								aria-label="Editar o evento <?= $event->name ?>"></span>
+							<span class="icon glyphicon glyphicon-trash btn-event-delete"
+								id="<?= $event->id ?>"
+								tabindex="0"
+								aria-label="Excluir o evento <?= $event->name ?>"></span>
+						<?php else: ?>
+							<small class="badge" style="background-color: #707070; color: white;">
+								Encerrado
+								<span class="glyphicon glyphicon-info-sign"
+									aria-hidden="true"></span>
+							</small>
+						<?php endif ?>
+					</span>
+				</span>
+				<!-- Término para área de informações para resolução média -->
+				<!-- Início para área de informações para celulares -->
+				<span class="visible-sm visible-xs">
+					<small style="display: inline-block">
+						<span class="icon glyphicon glyphicon-time"></span>
+						<span class="icon" tabindex="0">
+							<?= Helpers::interval_format($event->starts_at, $event->ends_at) ?>
+						</span>
+					</small>
+					<span style="margin-top: 20px;">
+						<?php if(!$event->finished): ?>
+						<span class="icon glyphicon glyphicon-pencil btn-event-edit"
+							id="<?= $event->id ?>"
+							tabindex="0"
+							aria-label="Editar o evento <?= $event->name ?>"></span>
+						<span class="icon glyphicon glyphicon-trash btn-event-delete"
+							id="<?= $event->id ?>"
+							tabindex="0"
+							aria-label="Excluir o evento <?= $event->name ?>"></span>
+						<?php else: ?>
+						<small class="badge" style="background-color: #707070; color: white;">
+							Encerrado
+							<span class="glyphicon glyphicon-info-sign"
+								aria-hidden="true"></span>
+						</small>
+						<?php endif ?>
+					</span>
+				</span>
+				<!-- Término para área de informações para celulares -->
 			</div>
 		</div>
 		<!-- Término da área de Cabeçalho do Evento -->
@@ -64,7 +136,7 @@ use App\Utils\Helpers;
 					</small>
 				</p>
 				<hr />
-				<div class="container" tabindex="0">
+				<div class="container content" tabindex="0">
 					<?= $event->description ?>
 				</div>
 			</div>

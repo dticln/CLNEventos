@@ -368,4 +368,9 @@ class Helpers
 		}
 	}
 
+	public static function str_limit($input, $limit)
+	{
+		return strlen($input)  > $limit ? substr($input, 0, 30) . '...' : $input;
+	}
+
 }
