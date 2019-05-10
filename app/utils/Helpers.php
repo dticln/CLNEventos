@@ -373,4 +373,9 @@ class Helpers
 		return strlen($input)  > $limit ? substr($input, 0, 30) . '...' : $input;
 	}
 
+	public static function parse_to_js($var, $var_name)
+	{
+		return '<script type="text/javascript">var ' . $var_name . ' = ' . json_encode($var) . '</script>';
+	}
+
 }

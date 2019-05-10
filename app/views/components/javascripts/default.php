@@ -8,7 +8,6 @@ use Pure\Utils\DynamicHtml;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <?php if(PURE_ENV === 'production'): ?>
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<?= DynamicHtml::link_script('moment/moment.min.js') ?>
 	<?= DynamicHtml::link_script('moment/locale/pt-br.min.js') ?>
 	<?= DynamicHtml::link_script('bootstrap/js/collapse.min.js') ?>
@@ -17,8 +16,12 @@ use Pure\Utils\DynamicHtml;
 	<?= DynamicHtml::link_script('bootstrap-datetimepicker/bootstrap-datetimepicker.min.js') ?>
 	<?= DynamicHtml::link_script('common.min.js') ?>
 	<?= DynamicHtml::link_script('controller.js') ?>
+	<?= DynamicHtml::link_script('fullcalendar/core/main.min.js') ?>
+	<?= DynamicHtml::link_script('fullcalendar/daygrid/main.min.js') ?>
+	<?= DynamicHtml::link_script('fullcalendar/interaction/main.min.js') ?>
+	<?= DynamicHtml::link_script('fullcalendar/bootstrap/main.min.js') ?>
+	<?= DynamicHtml::link_script('fullcalendar/core/locales-all.min.js') ?>
 <?php else: ?>
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<?= DynamicHtml::link_script('moment/moment.min.js') ?>
 	<?= DynamicHtml::link_script('moment/locale/pt-br.js') ?>
 	<?= DynamicHtml::link_script('bootstrap/js/collapse.js') ?>
@@ -27,6 +30,11 @@ use Pure\Utils\DynamicHtml;
 	<?= DynamicHtml::link_script('bootstrap-datetimepicker/bootstrap-datetimepicker.js') ?>
 	<?= DynamicHtml::link_script('common.js') ?>
 	<?= DynamicHtml::link_script('controller.js') ?>
+	<?= DynamicHtml::link_script('fullcalendar/core/main.js') ?>
+	<?= DynamicHtml::link_script('fullcalendar/daygrid/main.js') ?>
+	<?= DynamicHtml::link_script('fullcalendar/interaction/main.js') ?>
+	<?= DynamicHtml::link_script('fullcalendar/bootstrap/main.js') ?>
+	<?= DynamicHtml::link_script('fullcalendar/core/locales-all.js') ?>
 <?php endif; ?>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

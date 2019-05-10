@@ -17,10 +17,17 @@ use Pure\Utils\Res;
 		<?= DynamicHtml::link_css('ufrgs.min.css') ?>
 		<?= DynamicHtml::link_css('minimal.min.css') ?>
 		<?= DynamicHtml::link_css('bootstrap-datetimepicker/bootstrap-datetimepicker.min.css'); ?>
+		<?= DynamicHtml::link_css('fullcalendar/core/main.min.css'); ?>
+		<?= DynamicHtml::link_css('fullcalendar/daygrid/main.min.css'); ?>
+		<?= DynamicHtml::link_css('fullcalendar/bootstrap/main.min.css'); ?>
 	<?php else: ?>
 		<?= DynamicHtml::link_css('ufrgs.css') ?>
 		<?= DynamicHtml::link_css('minimal.css') ?>
 		<?= DynamicHtml::link_css('bootstrap-datetimepicker/bootstrap-datetimepicker.css'); ?>
+		<?= DynamicHtml::link_css('fullcalendar/core/main.css'); ?>
+		<?= DynamicHtml::link_css('fullcalendar/daygrid/main.css'); ?>
+		<?= DynamicHtml::link_css('fullcalendar/bootstrap/main.css'); ?>
 	<?php endif; ?>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<meta property="creator.productor" content="http://estruturaorganizacional.dados.gov.br/id/unidade-organizacional/200000" />
 </head>
