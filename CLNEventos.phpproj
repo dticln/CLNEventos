@@ -7,6 +7,8 @@
     </RootNamespace>
     <OutputType>Library</OutputType>
     <ProjectTypeGuids>{A0786B88-2ADB-4C21-ABE8-AA2D79766269}</ProjectTypeGuids>
+    <SpecificPageValue>index.php</SpecificPageValue>
+    <StartAction>SpecificPage</StartAction>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <IncludeDebugInformation>true</IncludeDebugInformation>
@@ -572,6 +574,7 @@
     <Compile Include="app\plugins\SimpleSaml.php" />
     <Compile Include="app\utils\Helpers.php" />
     <Compile Include="app\utils\UFRGSAuth.php" />
+    <Compile Include="app\views\components\footer.php" />
     <Compile Include="app\views\components\heads\minimal.php" />
     <Compile Include="app\views\components\javascripts\default.php" />
     <Compile Include="app\views\components\feedback.php" />
@@ -589,6 +592,7 @@
     <Compile Include="app\views\pages\ajax\event\list.php" />
     <Compile Include="app\views\pages\ajax\event\update.php" />
     <Compile Include="app\views\pages\ajax\response.php" />
+    <Compile Include="app\views\pages\deny.php" />
     <Compile Include="app\views\pages\event\index.php" />
     <Compile Include="app\views\pages\error.php" />
     <Compile Include="app\views\pages\index.php" />
@@ -785,6 +789,8 @@
     <Folder Include="pure" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\assets\scripts\common.min.js" />
+    <Content Include="app\assets\scripts\controller.min.js" />
     <Content Include="app\assets\scripts\fullcalendar\bootstrap\main.js" />
     <Content Include="app\assets\scripts\fullcalendar\bootstrap\main.min.js" />
     <Content Include="app\assets\scripts\fullcalendar\core\locales-all.js" />
@@ -838,6 +844,7 @@
     <Content Include="app\assets\scripts\fullcalendar\core\locales\nn.js" />
     <Content Include="app\assets\scripts\fullcalendar\core\locales\pl.js" />
     <Content Include="app\assets\scripts\fullcalendar\core\locales\pt-br.js" />
+    <Content Include="app\assets\scripts\fullcalendar\core\locales\pt-br.min.js" />
     <Content Include="app\assets\scripts\fullcalendar\core\locales\pt.js" />
     <Content Include="app\assets\scripts\fullcalendar\core\locales\ro.js" />
     <Content Include="app\assets\scripts\fullcalendar\core\locales\ru.js" />
@@ -873,6 +880,7 @@
     <Content Include="app\assets\scripts\fullcalendar\rrule\main.min.js" />
     <Content Include="app\assets\scripts\fullcalendar\timegrid\main.js" />
     <Content Include="app\assets\scripts\fullcalendar\timegrid\main.min.js" />
+    <Content Include="app\assets\scripts\npm.min.js" />
     <Content Include="app\assets\stylesheets\fullcalendar\bootstrap\main.css" />
     <Content Include="app\assets\stylesheets\fullcalendar\bootstrap\main.min.css" />
     <Content Include="app\assets\stylesheets\fullcalendar\core\main.css" />
@@ -883,5 +891,11 @@
     <Content Include="app\assets\stylesheets\fullcalendar\list\main.min.css" />
     <Content Include="app\assets\stylesheets\fullcalendar\timegrid\main.css" />
     <Content Include="app\assets\stylesheets\fullcalendar\timegrid\main.min.css" />
+    <Content Include="app\assets\stylesheets\minimal.min.css">
+      <SubType>Content</SubType>
+      <DependentUpon>app\assets\stylesheets\minimal.css</DependentUpon>
+    </Content>
+    <Content Include="app\assets\stylesheets\ufrgs.min.css" />
+    <None Include="bundleconfig.json" />
   </ItemGroup>
 </Project>

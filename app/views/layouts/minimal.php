@@ -17,14 +17,15 @@ use Pure\Utils\Res;
 				</a>
 				<h1>
 					<?= Res::str('app_title_short'); ?>
-					<span>
-						<?= Res::str('name_cpd_cln'); ?>
-					</span>
 				</h1>
+				<h3>
+					<?= Res::str('name_cpd_cln'); ?>
+				</h3>
 			</div>
 		</div>
 	</div>
 	<?= $this->content(); ?>
 	<?= $this->render_component('javascripts/default'); ?>
+	<?= $this->render_compoment('footer'); ?>
 </body>
 </html>

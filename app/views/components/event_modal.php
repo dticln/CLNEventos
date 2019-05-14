@@ -10,7 +10,7 @@ use Pure\Utils\Res;
 				<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h2 class="modal-title" id="dashboard-modal-label">Modal title</h2>
+				<h2 class="modal-title" id="dashboard-modal-label" tabindex="0">Modal title</h2>
 			</div>
 			<div class="modal-body" id="dashboard-modal-body">
 				...

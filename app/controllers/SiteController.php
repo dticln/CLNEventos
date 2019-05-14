@@ -26,23 +26,36 @@ class SiteController extends Controller
 	}
 
 	public function ajax_list_action() {
-		$events = Event::find_all_informations();
-		foreach($events as $event)
-		{
-			array_push($this->data,[
-				'id' => $event->id,
-				'title' => $event->name,
-				'start' => $event->starts_at,
-				'end' => $event->ends_at,
-				'color' => $event->color
-			]);
+		if (Request::is_POST()) {
+			$param = $this->params->unpack('POST', ['start', 'end']);
+			if ($param) {
+				$events = Event::get_events_at_interval($param['start'], $param['end']);
+				foreach($events as $event)
+				{
+					array_push($this->data,[
+						'id' => $event->id,
+						'title' => $event->name,
+						'start' => $event->starts_at,
+						'end' => $event->ends_at,
+						'category' => $event->category_name,
+						'color' => (strtotime($event->ends_at) <= strtotime('now')) ? '#606060' : $event->color
+					]);
+				}
+			} else {
+				array_push($this->data,[
+					'message' => 'Requisição incorreta.'
+				]);
+			}
+			$this->render_json();
+		} else {
+			Request::redirect('error/deny');
 		}
-		$this->render_json();
 	}
 
 	public function ajax_event_action($id) {
 		$event = Event::find($id);
 		$this->data['event'] = $event;
+		$this->data['event']->category = Category::find($event->category)->name;
 		$this->render_ajax('event/item');
 	}
 

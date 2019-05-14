@@ -27,5 +27,6 @@ use Pure\Utils\Res;
 		</div>
 	</div>
 	<?= $this->render_component('javascripts/default'); ?>
+	<?= $this->render_compoment('footer'); ?>
 </body>
 </html>

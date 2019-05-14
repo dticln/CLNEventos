@@ -7,10 +7,10 @@ use Pure\Utils\DynamicHtml;
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
+<?= DynamicHtml::link_script('moment/moment.min.js') ?>
+<?= DynamicHtml::link_script('moment/locale/pt-br.js') ?>
+<?= DynamicHtml::link_script('bootstrap/js/collapse.js') ?>
 <?php if(PURE_ENV === 'production'): ?>
-	<?= DynamicHtml::link_script('moment/moment.min.js') ?>
-	<?= DynamicHtml::link_script('moment/locale/pt-br.min.js') ?>
-	<?= DynamicHtml::link_script('bootstrap/js/collapse.min.js') ?>
 	<?= DynamicHtml::link_script('bootstrap/bootstrap.min.js') ?>
 	<?= DynamicHtml::link_script('bootstrap-select/bootstrap-select.min.js') ?>
 	<?= DynamicHtml::link_script('bootstrap-datetimepicker/bootstrap-datetimepicker.min.js') ?>
@@ -22,9 +22,6 @@ use Pure\Utils\DynamicHtml;
 	<?= DynamicHtml::link_script('fullcalendar/bootstrap/main.min.js') ?>
 	<?= DynamicHtml::link_script('fullcalendar/core/locales-all.min.js') ?>
 <?php else: ?>
-	<?= DynamicHtml::link_script('moment/moment.min.js') ?>
-	<?= DynamicHtml::link_script('moment/locale/pt-br.js') ?>
-	<?= DynamicHtml::link_script('bootstrap/js/collapse.js') ?>
 	<?= DynamicHtml::link_script('bootstrap/bootstrap.min.js') ?>
 	<?= DynamicHtml::link_script('bootstrap-select/bootstrap-select.min.js') ?>
 	<?= DynamicHtml::link_script('bootstrap-datetimepicker/bootstrap-datetimepicker.js') ?>

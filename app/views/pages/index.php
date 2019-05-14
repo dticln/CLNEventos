@@ -9,7 +9,6 @@ use App\Utils\Helpers;
 <script type="text/javascript">
 	document.addEventListener('DOMContentLoaded', function () {
 		var calendarEl = document.getElementById('calendar');
-
 		var calendar = new FullCalendar.Calendar(calendarEl, {
 			customButtons: {
 				config: {
@@ -20,7 +19,7 @@ use App\Utils\Helpers;
 				}
 			},
 			plugins: ['dayGrid', 'interaction'],
-			defaultView: 'dayGridMonth',
+			defaultView: 'dayGridWeek',
 			header: {
 				left: 'dayGridWeek,dayGridMonth prev,next',
 				center: 'title',
@@ -28,8 +27,12 @@ use App\Utils\Helpers;
 			},
 			locale: 'pt-br',
 			displayEventTime: false,
-			events: BASE_URL + 'site/ajax_list',
+			eventSources: [{
+				url: BASE_URL + 'site/ajax_list',
+				method: 'POST'
+			}],
 			eventClick: function (info) {
+				$(MODAL_NAME).modal({ backdrop: !window.location.href.includes('iframe') });
 				loadForm('site/ajax_event/' + info.event.id, {
 					title: info.event.title,
 					button: 'OK',

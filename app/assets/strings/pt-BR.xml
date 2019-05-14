@@ -20,6 +20,10 @@
     <string name="password" value="Senha"/>
     <string name="login" value="Entrar"/>
     <string name="login_temp" value="Página temporária de login para desenvolvimento. "/>
+    <string name="404" value="404 - Página não encontrada."/>
+    <string name="not_found" value="Desculpe, não conseguimos encontrar essa página!"/>
+    <string name="leave_me" value="Me tire daqui!"/>
+    <string name="contact_us" value="Fale conosco!"/>
     <array name="db_error">
       <string name="title" value="Problema ao processar requisição"/>
       <string name="body" value="Não foi possível processar a requisição solicitada. Contate o Divisão de Tecnologia da Informação."/>

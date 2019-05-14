@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    loadContent('event/ajax_list', '.content-event');
+    loadContent('event/ajax_list/', '.content-event');
 });
 
 $('body').on('click', '.btn-event-insert', function () {

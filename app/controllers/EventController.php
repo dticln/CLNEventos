@@ -27,11 +27,7 @@ class EventController extends Controller
 	{
 		$this->data['events'] = Event::find_all_informations();
 		foreach($this->data['events'] as $event) {
-			if(strtotime($event->ends_at) <= strtotime('now')) {
-				$event->finished = true;
-			} else {
-				$event->finished = false;
-			}
+			$event->finished = (strtotime($event->ends_at) <= strtotime('now'));
 		}
 		$this->render_ajax('event/list');
 	}
@@ -130,7 +126,7 @@ class EventController extends Controller
 	{
 		if (!Auth::is_authenticated())
 		{
-			Request::redirect('login/do&callback=' . $this->params->from_GET('PurePage'));
+			Request::redirect('login/do/&callback=' . $this->params->from_GET('PurePage'));
 		}
 	}
 
@@ -200,6 +196,7 @@ class EventController extends Controller
 				$event->ends_at = date('Y-m-d H:i:s', $end_date);
 				$event->description = $body;
 				$event->owner = $this->session->get('uinfo')->id;
+				$event->updated = strtotime('now');
 				$category = Category::find($category_id);
 				if ($category) {
 					$event->category = $category->id;

@@ -16,7 +16,7 @@ use Pure\Utils\Params;
 	</div>
 	<?php endif; ?>
 
-	<form class="col-md-4 col-md-offset-4 login-form" action="<?= DynamicHtml::link_to('login/do&callback=' . Params::get_instance()->from_GET('callback')) ?>" method="POST">
+	<form class="col-md-4 col-md-offset-4 login-form" action="<?= DynamicHtml::link_to('login/do/&callback=' . Params::get_instance()->from_GET('callback')) ?>" method="POST">
 		<label for="ufrgs_id" class="sr-only">
 			<?= Res::str('usr_ufrgs_label') ?>
 		</label>
