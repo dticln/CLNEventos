@@ -41,10 +41,10 @@ class SimpleSaml extends Plugin
 
 	public function source() {}
 
-	public function require_auth()
+	public function require_auth($return_to = ENV_SP_RETURN_TO)
 	{
 		$this->instance->requireAuth(
-			['ReturnTo' => ENV_SP_RETURN_TO]
+			['ReturnTo' => $return_to]
 		);
 	}
 
@@ -53,9 +53,9 @@ class SimpleSaml extends Plugin
 		return $this->instance->isAuthenticated();
 	}
 
-	public function logout(){
+	public function logout($return_to = ENV_SP_RETURN_TO){
 		$this->instance->logout(
-			['ReturnTo' => ENV_SP_RETURN_TO]
+			['ReturnTo' => $return_to]
 		);
 		exit();
 	}
@@ -75,13 +75,18 @@ class SimpleSaml extends Plugin
 		foreach($attributes[ENV_SP_ASSOCIATION] as $current)
 		{
 			$association = explode(":", $current);
-
 			array_push($user->association, [
-				'state' => ($association[0] == 'ativo') ,
-				'id' => $association[1],
-				'name' => $association[2],
-				'to' => $association[10] == 'NULL' ? $association[10] : null,
-				'from' => $association[11]  == 'NULL' ? $association[11] : null
+				'bond_state' => ($association[0] == 'ativo'),
+				'bond_code' => intval($association[1]),
+				'bond_name' => $association[2],
+				'exercise_ou_code' => intval($association[3]),
+				'exercise_ou_name' => ($association[4] !== 'NULL') ? $association[4] : null,
+				'position_ou_code' => intval($association[5]),
+				'position_ou_name' => ($association[6] !== 'NULL') ? $association[6] : null,
+				'course_code' => intval($association[7]),
+				'course_name' => ($association[8] !== 'NULL') ? $association[8] : null,
+				'starts' => ($association[9] !== 'NULL') ? $association[9] : null,
+				'ends' => ($association[10] !== 'NULL') ? $association[10] : null,
 			]);
 		}
 		return $user;

@@ -24,7 +24,7 @@ class LoginController extends Controller
 	public function reset_action($username)
 	{
 		if(PURE_ENV === 'development' && intval($username)){
-			$user = User::find(['ufrgs' => intval($username), 'is_actived' => true]);
+			$user = User::find(['ufrgs' => intval($username), 'is_activated' => true]);
 			if ($user) {
 				$new = Helpers::get_rnd_str(10);
 				$pass = new Password($new);
@@ -88,7 +88,7 @@ class LoginController extends Controller
 
 	private function do_login($credential = 0)
 	{
-		$user = User::find(['ufrgs' => intval($credential['ufrgs_id']), 'is_actived' => true]);
+		$user = User::find(['ufrgs' => intval($credential['ufrgs_id']), 'is_activated' => true]);
 		if($user === null)
 		{
 			$this->data['error_message'] = 'Cartão UFRGS não encontrado.';

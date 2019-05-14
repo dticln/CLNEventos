@@ -25,6 +25,20 @@ class SiteController extends Controller
 		$this->render('index', 'none');
 	}
 
+	public function simplesaml_action()
+	{
+		if(PURE_ENV === 'production' && ENV_SP_DEV){
+			echo '<pre>' . var_dump($this->session->get('uid')) . '</pre>';
+			echo '<pre>' . var_dump($this->session->get('status')) . '</pre>';
+			echo '<pre>' . var_dump($this->session->get('bond')) . '</pre>';
+			echo '<pre>' . var_dump($this->session->get('access_from')) . '</pre>';
+			echo '<pre>' . var_dump($this->session->get('session_owner')) . '</pre>';
+			highlight_string("<?php\n\$data =\n" . var_export($this->session->get('uinfo'), true) . ";\n?>");
+			exit();
+		}
+		Request::redirect('error/index');
+	}
+
 	public function ajax_list_action() {
 		if (Request::is_POST()) {
 			$param = $this->params->unpack('POST', ['start', 'end']);

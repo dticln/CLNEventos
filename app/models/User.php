@@ -34,7 +34,7 @@ class User extends Model
 			->on('permission.id = rel.permission')
 			->join('user usr')
 			->on('usr.id = rel.user')
-			->where(['usr.ufrgs' => intval($ufrgs_id), 'usr.is_actived' => true, 'permission.hash' => $permission_name])
+			->where(['usr.ufrgs' => intval($ufrgs_id), 'usr.is_activated' => true, 'permission.hash' => $permission_name])
 			->execute();
 		return isset($it[0]) ? $it[0] : false;*/
 	}
@@ -51,11 +51,11 @@ class User extends Model
 				$search .
 				'%" OR ufrgs LIKE "%' .
 				intval($search) .
-				'%" ORDER BY is_actived DESC, name ASC' )->execute();
+				'%" ORDER BY is_activated DESC, name ASC' )->execute();
 		}
 		return self::build('SELECT * FROM user WHERE name LIKE "%' .
 				$search .
-				'%" ORDER BY is_actived DESC, name ASC' )->execute();
+				'%" ORDER BY is_activated DESC, name ASC' )->execute();
 
 	}
 

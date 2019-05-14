@@ -19,8 +19,14 @@ require(BASE_PATH . 'pure/kernel/autoloader.php');
 use Pure\Kernel\Engine;
 use App\Utils\Helpers;
 
-if(!in_array(Helpers::get_client_ip(), ['127.0.0.1','143.54.196.69'])) {
+// Utilização durante teste de autenticação federada
+if(!in_array(Helpers::get_client_ip(), [
+		'127.0.0.1',
+		'143.54.196.69', 
+		'143.54.196.71'
+	])) {
 	exit();
 }
+
 $app = Engine::get_instance();
 $app->execute();

@@ -11,10 +11,10 @@ use Pure\Utils\Res;
 					<?= Res::str('ops') ?>
 				</h1>
 				<h2>
-					<?= Res::str('404') ?>
+					<?= 'Você não tem permissão para acessar essa página.' ?>
 				</h2>
 				<h3>
-					<?= Res::str('not_found') ?>
+					<?= 'Por favor, entrar em contato com a DTI' ?>
 				</h3>
 				<div style="margin: 15px;">
 					<a href="<?= DynamicHtml::link_to('site/index') ?>" class="btn btn-primary btn-lg" style="margin: 10px;">

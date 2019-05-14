@@ -196,7 +196,7 @@ class EventController extends Controller
 				$event->ends_at = date('Y-m-d H:i:s', $end_date);
 				$event->description = $body;
 				$event->owner = $this->session->get('uinfo')->id;
-				$event->updated = strtotime('now');
+				$event->updated = date('Y-m-d H:i:s', strtotime('now'));
 				$category = Category::find($category_id);
 				if ($category) {
 					$event->category = $category->id;
