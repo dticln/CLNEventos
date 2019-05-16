@@ -2,7 +2,6 @@
 namespace App\Controllers;
 use Pure\Bases\Controller;
 use Pure\Utils\Request;
-use Pure\Utils\Auth;
 use App\Models\Category;
 use App\Models\Event;
 
@@ -17,11 +16,13 @@ class SiteController extends Controller
 
 	public function index_action()
 	{
+		$this->data['categories'] = Category::find();
 		$this->render('index', 'main');
 	}
 
 	public function iframe_action()
 	{
+		$this->data['categories'] = Category::find();
 		$this->render('index', 'none');
 	}
 
@@ -76,8 +77,6 @@ class SiteController extends Controller
 	/**
 	 * Verifica se usuário está logado
 	 */
-	public function before()
-	{
-	}
+	public function before() {}
 
 }

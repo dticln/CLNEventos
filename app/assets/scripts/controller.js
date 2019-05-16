@@ -47,3 +47,14 @@ $('body').on('click', '.btn-event-delete', function () {
 $('body').on('submit', '#delete-event', function (event) {
     sendForm('event/ajax_delete', $(this), 'event/ajax_list', '.content-event', event);
 });
+
+$('body').on('click', '.event-pagination a', function (ev) {
+    ev.preventDefault();
+    var search = $('.event-current-search').html();
+    var url = ((DEV_ENV) ? 'event/ajax_list&' : 'event/ajax_list/?');
+    if (search !== undefined) {
+        url += 'event-search=' + search + '&';
+    }
+    url += 'event-page=' + $(this).html();
+    loadContent(url, '.content-event');
+});

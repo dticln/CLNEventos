@@ -60,4 +60,5 @@ use App\Utils\Helpers;
 
 <div class="jumbotron reverse-background">
 	<div id="calendar"></div>
+	<?= $this->render_component('caption', ['categories' => $categories]); ?>
 </div>

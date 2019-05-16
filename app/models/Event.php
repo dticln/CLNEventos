@@ -34,6 +34,41 @@ class Event extends Model
 			->execute();
 	}
 
+	public static function select_at_page($limit, $page)
+	{
+		$offset = ((intval($page) - 1) * intval($limit));
+		return Event::select(['event.*','usr.name user','ctg.name category_name', 'ctg.basecolor color'])
+			->join('user usr')
+			->on('event.owner = usr.id')
+			->join('category ctg')
+			->on('event.category = ctg.id')
+			->order_by(['event.ends_at' => 'DESC'])
+			->limit($limit)
+			->offset(intval($offset))
+			->execute();
+	}
+
+	public static function select_where_at_page($where, $limit, $page)
+	{
+		$offset = ((intval($page) - 1) * intval($limit));
+		return Event::select(['event.*','usr.name user','ctg.name category_name', 'ctg.basecolor color'])
+			->join('user usr')
+			->on('event.owner = usr.id')
+			->join('category ctg')
+			->on('event.category = ctg.id')
+			->where_like(['event.name' => '%' . $where . '%'])
+			->order_by(['event.ends_at' => 'DESC'])
+			->limit($limit)
+			->offset(intval($offset))
+			->execute();
+	}
+
+	public static function select_count()
+	{
+		return self::select('COUNT(*) as count')
+			->execute()[0]->count;
+	}
+
 	public static function get_events_at_interval($start, $end)
 	{
 		return Event::build(

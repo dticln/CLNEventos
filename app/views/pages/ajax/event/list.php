@@ -144,3 +144,7 @@ use App\Utils\Helpers;
 		<!-- Final da área de Corpo do Evento -->
 	</div>
 <?php endforeach; ?>
+
+<div class="text-center event-pagination">
+	<?= Helpers::pagination($per_page, $count, ($page) ? $page : 1) ?>
+</div>

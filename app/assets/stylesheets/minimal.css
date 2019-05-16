@@ -6,6 +6,16 @@
     color: #FFFFFF;
 }
 
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+    background-color: #294A70 !important;
+    border-color: #294A70 !important;
+}
+
 .header-title {
     margin-top: 40px;
 }
@@ -137,4 +147,10 @@
     width: 200px;
     margin-top: 80px;
     float: none;
+}
+
+.category-caption {
+    padding: 7px;
+    margin-top: 5px;
+    margin-left: 5px;
 }

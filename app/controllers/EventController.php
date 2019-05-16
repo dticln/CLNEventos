@@ -25,10 +25,21 @@ class EventController extends Controller
 
 	public function ajax_list_action()
 	{
-		$this->data['events'] = Event::find_all_informations();
+		$search = $this->params->from_GET('event-search');
+		$page = $this->params->from_GET('event-page');
+		$page = ($page) ? intval($page) : 1;
+		$this->data['per_page'] = 10;
+		if($search) {
+			// @todo
+		} else
+		{
+			$this->data['events'] = Event::select_at_page($this->data['per_page'], $page);
+			$this->data['count'] = Event::select_count();
+		}
 		foreach($this->data['events'] as $event) {
 			$event->finished = (strtotime($event->ends_at) <= strtotime('now'));
 		}
+		$this->data['page'] = $page;
 		$this->render_ajax('event/list');
 	}
 

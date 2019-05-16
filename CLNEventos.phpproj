@@ -574,6 +574,7 @@
     <Compile Include="app\plugins\SimpleSaml.php" />
     <Compile Include="app\utils\Helpers.php" />
     <Compile Include="app\utils\UFRGSAuth.php" />
+    <Compile Include="app\views\components\caption.php" />
     <Compile Include="app\views\components\footer.php" />
     <Compile Include="app\views\components\heads\minimal.php" />
     <Compile Include="app\views\components\javascripts\default.php" />
