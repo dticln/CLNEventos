@@ -8,14 +8,22 @@ use App\Utils\Helpers;
 
 <div class="row content-row">
 	<div class="col-md-2">
+		<button type="button" class="btn btn-custom tab-event" style="margin-bottom: 10px" aria-label="Atualizar página de eventos">
+			<span class="glyphicon glyphicon-refresh"></span>
+		</button>
 		<button type="button" class="btn btn-custom btn-event-insert" style="margin-bottom: 10px" aria-label="Adicionar um novo evento">
 			<span class="glyphicon glyphicon-plus"></span>
 		</button>
 	</div>
 	<div class="col-md-10">
 		<div class="input-group">
-			<input type="text" class="form-control" id="" placeholder="Digite o nome do evento. Exemplo: Campus Aberto 2020" />
-			<div class="input-group-addon input-group-addon-custom" tabindex="0" aria-label="Realizar pesquisa de evento"> Pesquisar </div>
+			<input type="text" class="form-control"
+				id="event-name-search"
+				name="event-name-search"
+				placeholder="Digite o nome do evento. Exemplo: Campus Aberto 2020" />
+			<div class="input-group-addon input-group-addon-custom event-name-search-btn" 
+				tabindex="0" 
+				aria-label="Realizar pesquisa de evento"> Pesquisar </div>
 		</div>
 	</div>
 </div>

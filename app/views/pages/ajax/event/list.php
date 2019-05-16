@@ -1,8 +1,17 @@
 <?php
 namespace App\Views\Pages\Ajax\Event;
 use App\Utils\Helpers;
+use Pure\Utils\Res;
 ?>
 
+<?php if($search): ?>
+<div class="alert alert-info">
+	<?= Res::str('search_for') ?> "<span class="article-current-search"><?= $search ?></span>".
+	<small style="font-size: 10px">
+		<?= Res::str('search_w') ?> <?= $count ?> <?= Res::str('search_w_event') ?>
+	</small>
+</div>
+<?php endif; ?>
 
 <?php if(empty($events)):  ?>
 	<div class="alert alert-danger">
@@ -145,6 +154,8 @@ use App\Utils\Helpers;
 	</div>
 <?php endforeach; ?>
 
-<div class="text-center event-pagination">
-	<?= Helpers::pagination($per_page, $count, ($page) ? $page : 1) ?>
-</div>
+<?php if(!empty($events)):  ?>
+	<div class="text-center event-pagination">
+		<?= Helpers::pagination($per_page, $count, ($page) ? $page : 1) ?>
+	</div>
+<?php endif; ?>

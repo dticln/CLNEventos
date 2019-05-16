@@ -14,6 +14,9 @@ use App\Models\Event;
 class SiteController extends Controller
 {
 
+	/**
+	 * @todo Colocar label de encerrados
+	 */
 	public function index_action()
 	{
 		$this->data['categories'] = Category::find();

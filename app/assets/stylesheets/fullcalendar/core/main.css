@@ -622,29 +622,33 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 
 /* "primary" coloring */
 .fc-button-primary {
-  color: #fff;
-  background-color: #2C3E50;
-  border-color: #2C3E50; }
+    color: #fff;
+    background-color: #F4A024;
+    border-color: #294A70;
+}
 
-.fc-button-primary:hover {
-  color: #fff;
-  background-color: #1e2b37;
-  border-color: #1a252f; }
+    .fc-button-primary:hover {
+        color: #fff;
+        background-color: #CB7D08;
+        border-color: #294A70;
+    }
 
 .fc-button-primary:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(76, 91, 106, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(76, 91, 106, 0.5); }
 
-.fc-button-primary:disabled {
-  color: #fff;
-  background-color: #2C3E50;
-  border-color: #2C3E50; }
+    .fc-button-primary:disabled {
+        color: #fff;
+        background-color: #F4A024;
+        border-color: #294A70;
+    }
 
-.fc-button-primary:not(:disabled):active,
-.fc-button-primary:not(:disabled).fc-button-active {
-  color: #fff;
-  background-color: #1a252f;
-  border-color: #151e27; }
+    .fc-button-primary:not(:disabled):active,
+    .fc-button-primary:not(:disabled).fc-button-active {
+        color: #fff;
+        background-color: #294A70;
+        border-color: #294A70;
+    }
 
 .fc-button-primary:not(:disabled):active:focus,
 .fc-button-primary:not(:disabled).fc-button-active:focus {

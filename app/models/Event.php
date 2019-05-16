@@ -48,7 +48,7 @@ class Event extends Model
 			->execute();
 	}
 
-	public static function select_where_at_page($where, $limit, $page)
+	public static function select_at_page_where($where, $limit, $page)
 	{
 		$offset = ((intval($page) - 1) * intval($limit));
 		return Event::select(['event.*','usr.name user','ctg.name category_name', 'ctg.basecolor color'])
@@ -67,6 +67,13 @@ class Event extends Model
 	{
 		return self::select('COUNT(*) as count')
 			->execute()[0]->count;
+	}
+
+	public static function select_count_where($where)
+	{
+		return self::select('COUNT(*) as count')
+				->where_like(['name' => '%'.$where.'%'])
+				->execute()[0]->count;
 	}
 
 	public static function get_events_at_interval($start, $end)

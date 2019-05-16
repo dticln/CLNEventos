@@ -21,7 +21,7 @@ use App\Utils\Helpers;
 			plugins: ['dayGrid', 'interaction'],
 			defaultView: 'dayGridWeek',
 			header: {
-				left: 'dayGridWeek,dayGridMonth prev,next',
+				left: 'dayGridDay,dayGridWeek,dayGridMonth prev,next',
 				center: 'title',
 				right: 'today, config'
 			},
@@ -55,7 +55,13 @@ use App\Utils\Helpers;
 		});
 
 		calendar.render();
+		setInterval(function () {
+			calendar.refetchEvents();
+		}, 5000);
+
 	});
+
+
 </script>
 
 <div class="jumbotron reverse-background">

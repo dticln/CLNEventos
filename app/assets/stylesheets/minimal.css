@@ -59,7 +59,8 @@
 }
 
 .btn-event-delete,
-.btn-event-edit {
+.btn-event-edit,
+.event-name-search-btn {
     cursor: pointer;
 }
 

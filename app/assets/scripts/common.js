@@ -12,12 +12,9 @@ var ADD_USER_MESSAGE = '<div class="modal-body" id="feedback-modal-body"><h4>Ops
 var SEARCH_MESSAGE = '<div class="modal-body" id="feedback-modal-body"><h4>Ops!</h4><p>Para pesquisar, insira um nome válido.</p></div>';
 var MODAL_NAME = '#dashboard-modal';
 
-/**
- * Tab que redireciona para gerenciador de senhas
- */
-$('body').on('click', '.tab-password', function () {
-    window.location.href = BASE_URL + 'vault/welcome';
-});
+
+
+
 
 /**
  * Definição de eventos jQuery
@@ -29,7 +26,6 @@ $('body').on('click', '.btn-modal-fullscreen', function (ev) {
         activateFullModal();
     }
 });
-
 
 /**
  * Carrega determinado formulário solicitado por Ajax

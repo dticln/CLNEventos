@@ -28,9 +28,13 @@
       <string name="title" value="Problema ao processar requisição"/>
       <string name="body" value="Não foi possível processar a requisição solicitada. Contate o Divisão de Tecnologia da Informação."/>
     </array>
+    <string name="search_for" value="Pesquisando por "/>
+    <string name="search_ph" value="Digite aqui sua pesquisa de artigo."/>
+    <string name="search_w" value="Pesquisa com o total de "/>
     <!-- Final das variaveis globais -->
 
     <!-- Ínicio da área de Evento -->
+    <string name="search_w_event" value="evento(s)."/>
     <string name="no_events" value="Não há eventos para exibição"/>
     <string name="event_name" value="Nome do evento"/>
     <string name="event_name_ph" value="Exemplo: Portas Abertas 2019."/>

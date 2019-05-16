@@ -30,7 +30,8 @@ class EventController extends Controller
 		$page = ($page) ? intval($page) : 1;
 		$this->data['per_page'] = 10;
 		if($search) {
-			// @todo
+			$this->data['events'] = Event::select_at_page_where(trim($search), $this->data['per_page'], $page);
+			$this->data['count'] = Event::select_count_where(trim($search), $this->data['per_page'], $page);
 		} else
 		{
 			$this->data['events'] = Event::select_at_page($this->data['per_page'], $page);
@@ -40,6 +41,7 @@ class EventController extends Controller
 			$event->finished = (strtotime($event->ends_at) <= strtotime('now'));
 		}
 		$this->data['page'] = $page;
+		$this->data['search'] = trim($search);
 		$this->render_ajax('event/list');
 	}
 
