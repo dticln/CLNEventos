@@ -30,27 +30,27 @@ class UFRGSAuth
 	}
 
 	/**
-	 * Realiza a autenticação, caso o usuário faça login na federação
+	 * Realiza a autenticação utilizando SimpleSAML na Federação UFRGS (SP Shibboleth).
+	 *
+	 * A verificação de acesso é feita em self::has_access($uinfo), onde estão contidas as regras
+	 * de vínculos que serão aceitas pelo sistema (Ex.: técnicos, docentes e alunos com vínculo ativo no CLN)
+	 *
+	 * O acesso ao sistema pode ser negado, caso o usuário conste como desativado no DB da aplicação.
+	 * Caso o usuário nunca tenha realizado login no sistema, uma entrada com informações básicas será criada no DB.
 	 *
 	 * @return boolean resposta
 	 */
 	public static function authenticate()
 	{
 		$saml = new SimpleSaml();
-		$saml->require_auth($_SERVER['REQUEST_URI']);
+		$saml->require_auth();
 		if($saml->is_authenticated()){
 			$uinfo = $saml->get_attributes();
-			Session::get_instance()->set('status', 'saml retrive');
 			if(self::has_access($uinfo)) {
-				Session::get_instance()->set('status', 'has access');
 				$user = User::find(['ufrgs' => intval($uinfo->ufrgs)]);
 				if($user) {
-					Session::get_instance()->set('status', 'found user');
 					if($user->is_activated == false) {
-						Session::get_instance()->set('status', 'not activated');
 						return false;
-					} else {
-						Session::get_instance()->set('status', 'activated');
 					}
 				} else {
 					$user = new User();
@@ -58,17 +58,14 @@ class UFRGSAuth
 					$user->name = $uinfo->name;
 					$user->is_activated = true;
 					$user->id = User::save($user);
-					Session::get_instance()->set('status', 'registered');
 				}
-				$session = Session::get_instance();
 				$security = Security::get_instance();
+				$session = Session::get_instance();
 				$uinfo->id = $user->id;
 				$session->set('uid', $uinfo->ufrgs);
 				$session->set('uinfo', $uinfo);
 				$session->set('session_owner', $security->session_name());
 				return true;
-			} else {
-				Session::get_instance()->set('status', 'has no access');
 			}
 		}
 		return false;
@@ -101,6 +98,19 @@ class UFRGSAuth
 		return (!empty($response) && ($response->hash == $permission));
 	}
 
+	/**
+	 * Realiza a verificação de vínculos com a Universidade
+	 * Os vínculos são verificados em três funções:
+	 *
+	 * - employee_access_by_exercise verifica se, dentro dos vínculos,
+	 * o usuário está em exercício no CLN.
+	 * - employee_access_by_position verifica se o usuário está lotado no CLN.
+	 * - student_access_by_course verifica se o usuário é aluno de algum dos cursos
+	 * do CLN.
+	 *
+	 * @param mixed $uinfo objeto obtido pelo SP
+	 * @return boolean
+	 */
 	private static function has_access($uinfo)
 	{
 		Session::get_instance()->set('bond', []);
@@ -118,14 +128,33 @@ class UFRGSAuth
 		return false;
 	}
 
+	/**
+	 * Verifica se o usuário está lotado no CLN, com base nos dados de vínculos.
+	 *
+	 * @param mixed $association vínculos com a universidade
+	 * @return boolean
+	 */
 	private static function employee_access_by_exercise($association) {
 		return (strpos($association['exercise_ou_name'], ENV_SP_CLN_NEEDLE) !== false);
 	}
 
+	/**
+	 * Verifica se o usuário está em exercício no CLN, com base nos dados de vínculos.
+	 *
+	 * @param mixed $association vínculos com a universidade
+	 * @return boolean
+	 */
 	private static function employee_access_by_position($association) {
 		return (strpos($association['position_ou_name'], ENV_SP_CLN_NEEDLE) !== false);
 	}
 
+	/**
+	 * Verifica se o usuário é um estudante de algum curso do CLN.
+	 * @todo
+	 *
+	 * @param mixed $association vínculos com a universidade
+	 * @return boolean
+	 */
 	private static function student_access_by_course($association) {
 		return false;
 	}

@@ -74,22 +74,27 @@ class SimpleSaml extends Plugin
 		$user->association = [];
 		foreach($attributes[ENV_SP_ASSOCIATION] as $current)
 		{
-			$association = explode(":", $current);
-			array_push($user->association, [
-				'bond_state' => ($association[0] == 'ativo'),
-				'bond_code' => intval($association[1]),
-				'bond_name' => $association[2],
-				'exercise_ou_code' => intval($association[3]),
-				'exercise_ou_name' => ($association[4] !== 'NULL') ? $association[4] : null,
-				'position_ou_code' => intval($association[5]),
-				'position_ou_name' => ($association[6] !== 'NULL') ? $association[6] : null,
-				'course_code' => intval($association[7]),
-				'course_name' => ($association[8] !== 'NULL') ? $association[8] : null,
-				'starts' => ($association[9] !== 'NULL') ? $association[9] : null,
-				'ends' => ($association[10] !== 'NULL') ? $association[10] : null,
-			]);
+			array_push($user->association, $this->normalize_association($current));
 		}
 		return $user;
+	}
+
+	private function normalize_association($raw_association)
+	{
+		$association = explode(":", $raw_association);
+		return [
+			'bond_state' => ($association[0] == 'ativo'),
+			'bond_code' => intval($association[1]),
+			'bond_name' => $association[2],
+			'exercise_ou_code' => intval($association[3]),
+			'exercise_ou_name' => ($association[4] !== 'NULL') ? $association[4] : null,
+			'position_ou_code' => intval($association[5]),
+			'position_ou_name' => ($association[6] !== 'NULL') ? $association[6] : null,
+			'course_code' => intval($association[7]),
+			'course_name' => ($association[8] !== 'NULL') ? $association[8] : null,
+			'starts' => ($association[9] !== 'NULL') ? $association[9] : null,
+			'ends' => ($association[10] !== 'NULL') ? $association[10] : null,
+		];
 	}
 
 
