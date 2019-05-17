@@ -15,7 +15,7 @@ class ErrorController extends Controller
 	 * Método carregado ao acessar a rota
 	 * CaCln/error/deny
 	 *
-	 * Rota de resposta para acesso negada
+	 * Rota de resposta para acesso negada (usuário sem permissão para acesso)
 	 */
 	public function deny_action()
 	{
@@ -23,10 +23,10 @@ class ErrorController extends Controller
 	}
 
 	/**
-	 * Painel de administração
+	 * Método carregado ao acessar a rota
 	 * CaCln/error/index
 	 *
-	 * Rota de resposta para falhas
+	 * Rota de resposta para falhas (não foi possível encontrar a página)
 	 */
 	public function index_action(){
 		$this->render('error', 'minimal');

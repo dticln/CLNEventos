@@ -23,18 +23,7 @@ class Event extends Model
 	public $updated;
 	public $created;
 
-	public static function find_all_informations()
-	{
-		return Event::select(['event.*','usr.name user','ctg.name category_name', 'ctg.basecolor color'])
-			->join('user usr')
-			->on('event.owner = usr.id')
-			->join('category ctg')
-			->on('event.category = ctg.id')
-			->order_by(['event.ends_at' => 'DESC'])
-			->execute();
-	}
-
-	public static function select_at_page($limit, $page)
+	public static function select_at_page($user, $limit, $page)
 	{
 		$offset = ((intval($page) - 1) * intval($limit));
 		return Event::select(['event.*','usr.name user','ctg.name category_name', 'ctg.basecolor color'])
@@ -42,13 +31,14 @@ class Event extends Model
 			->on('event.owner = usr.id')
 			->join('category ctg')
 			->on('event.category = ctg.id')
+			->where(['event.owner' => $user])
 			->order_by(['event.ends_at' => 'DESC'])
 			->limit($limit)
 			->offset(intval($offset))
 			->execute();
 	}
 
-	public static function select_at_page_where($where, $limit, $page)
+	public static function select_at_page_where($user, $where, $limit, $page)
 	{
 		$offset = ((intval($page) - 1) * intval($limit));
 		return Event::select(['event.*','usr.name user','ctg.name category_name', 'ctg.basecolor color'])
@@ -56,23 +46,24 @@ class Event extends Model
 			->on('event.owner = usr.id')
 			->join('category ctg')
 			->on('event.category = ctg.id')
-			->where_like(['event.name' => '%' . $where . '%'])
+			->where_like(['event.name' => '%' . $where . '%', 'event.owner' => $user])
 			->order_by(['event.ends_at' => 'DESC'])
 			->limit($limit)
 			->offset(intval($offset))
 			->execute();
 	}
 
-	public static function select_count()
+	public static function select_count($user)
 	{
 		return self::select('COUNT(*) as count')
+			->where(['event.owner' => $user])
 			->execute()[0]->count;
 	}
 
-	public static function select_count_where($where)
+	public static function select_count_where($user, $where)
 	{
 		return self::select('COUNT(*) as count')
-				->where_like(['name' => '%'.$where.'%'])
+				->where_like(['name' => '%'.$where.'%', 'event.owner' => $user])
 				->execute()[0]->count;
 	}
 

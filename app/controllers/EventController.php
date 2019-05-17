@@ -7,35 +7,67 @@ use Pure\Utils\Res;
 use App\Models\Event;
 use App\Models\Category;
 use Pure\Db\Database;
-use App\Utils\Helpers;
+use Pure\Utils\Session;
 
 /**
- * Controller principal
+ * Controller utilizado na administração de eventos
  *
- * @version 1.0
- * @author Marcelo Gomes Martins
+ * Os métodos aqui descritos são utilizados na inclusão, exclusão,
+ * edição e atualização de eventos
  */
 class EventController extends Controller
 {
 
+	/**
+	 * Página principal da area de administração de eventos
+	 */
 	public function index_action()
 	{
 		$this->render('event/index', 'dashboard');
 	}
 
+	/**
+	 * Lista o eventos cadastrados em banco de dados.
+	 *
+	 * O método carrega a lista de eventos no painel principal de EventController:index,
+	 * sendo chamado por uma requisição Ajax.
+	 *
+	 * Realiza a consulta dos eventos do usuário, quando o usuário não tem permissão
+	 * de administrador de eventos.
+	 *
+	 * Carrega todos os eventos de todos os usuários, quando o usuário tem permissão.
+	 *
+	 * Caso a variavel $_GET['event-search'] está presente, realiza a consulta com uma pesquisa.
+	 * Caso a variavel $_GET['event-page'] está presente, realiza a consulta na paginação específica
+	 * seu valor padrão é 1; sendo assim, por padrão, recupera os resultados da primeira página.
+	 *
+	 * Ambas as variaveis ($_GET['event-search'] e $_GET['event-page']) podem estar presentes.
+	 */
 	public function ajax_list_action()
 	{
 		$search = $this->params->from_GET('event-search');
 		$page = $this->params->from_GET('event-page');
 		$page = ($page) ? intval($page) : 1;
 		$this->data['per_page'] = 10;
+		$user = (PURE_ENV === 'production') ?
+			Session::get_instance()->get('uinfo')->id :
+			Session::get_instance()->get('uid');
 		if($search) {
-			$this->data['events'] = Event::select_at_page_where(trim($search), $this->data['per_page'], $page);
-			$this->data['count'] = Event::select_count_where(trim($search), $this->data['per_page'], $page);
+			$this->data['events'] = Event::select_at_page_where(
+				$user,
+				trim($search),
+				$this->data['per_page'],
+				$page
+			);
+			$this->data['count'] = Event::select_count_where($user, trim($search));
 		} else
 		{
-			$this->data['events'] = Event::select_at_page($this->data['per_page'], $page);
-			$this->data['count'] = Event::select_count();
+			$this->data['events'] = Event::select_at_page(
+				$user,
+				$this->data['per_page'],
+				$page
+			);
+			$this->data['count'] = Event::select_count($user);
 		}
 		foreach($this->data['events'] as $event) {
 			$event->finished = (strtotime($event->ends_at) <= strtotime('now'));
@@ -45,6 +77,23 @@ class EventController extends Controller
 		$this->render_ajax('event/list');
 	}
 
+	/**
+	 * Responsável pela inserção de um novo evento no banco de dados.
+	 *
+	 * POST - O método insere um novo evento no banco de dados através de uma
+	 * requisição Ajax.
+	 * Para uma inserção bem sucedida, a variavel $_POST deve possuir os campos:
+	 * - new-event-name: nome do evento
+	 * - new-event-place: local onde o evento ocorrerá
+	 * - new-event-category: id da categoria (a categoria deve existir no banco de dados)
+	 * - new-event-start: data de início do evento
+	 * - new-event-end: data de término do evento (deve ser superior à data de início)
+	 * - new-event-body: corpo de descrição do evento
+	 * Realiza a chamada do método $this->insertion_procedure(...) para realizar o cadastramento.
+	 *
+	 * GET - Carrega o formulário de inserção de um novo evento no banco de dados
+	 * através de uma requisição Ajax.
+	 */
 	public function ajax_insert_action()
 	{
 		if (Request::is_POST()) {

@@ -3,10 +3,9 @@ namespace App\Views\Pages;
 use App\Utils\Helpers;
 ?>
 
-<?= Helpers::parse_to_js($rows, 'events') ?>
 <?= $this->render_component('event_modal'); ?>
 
-<script type="text/javascript">
+<div><script type="text/javascript">
 	document.addEventListener('DOMContentLoaded', function () {
 		var calendarEl = document.getElementById('calendar');
 		var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -57,12 +56,9 @@ use App\Utils\Helpers;
 		calendar.render();
 		setInterval(function () {
 			calendar.refetchEvents();
-		}, 5000);
-
+		}, 10000);
 	});
-
-
-</script>
+</script></div>
 
 <div class="jumbotron reverse-background">
 	<div id="calendar"></div>

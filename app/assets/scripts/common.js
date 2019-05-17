@@ -12,21 +12,6 @@ var ADD_USER_MESSAGE = '<div class="modal-body" id="feedback-modal-body"><h4>Ops
 var SEARCH_MESSAGE = '<div class="modal-body" id="feedback-modal-body"><h4>Ops!</h4><p>Para pesquisar, insira um nome válido.</p></div>';
 var MODAL_NAME = '#dashboard-modal';
 
-
-
-
-
-/**
- * Definição de eventos jQuery
- */
-$('body').on('click', '.btn-modal-fullscreen', function (ev) {
-    if ($('.btn-modal-fullscreen').hasClass('active')) {
-        deactivateFullModal();
-    } else {
-        activateFullModal();
-    }
-});
-
 /**
  * Carrega determinado formulário solicitado por Ajax
  * Permite a edição de configurações do modal, entre eles o título,
@@ -195,7 +180,6 @@ function useLoadingImage(tag) {
  * @param {function} buttonEvent função executada pelo botão de confirmação
  */
 function bindModal(label, content, buttonText, buttonClass, buttonEvent) {
-    deactivateFullModal('.btn-modal-fullscreen');
     $(MODAL_NAME + '-label').html(label);
     $(MODAL_NAME + '-body').html(content);
     $(MODAL_NAME + '-confirm').text(buttonText);
@@ -223,7 +207,6 @@ function hideModal() {
  * @param {string} message mensagem que será mostrada
  */
 function showMessage(message) {
-    deactivateFullModal();
     $('#feedback-modal-content').html(message);
     $('#feedback-modal').modal('show');
 }
@@ -244,18 +227,4 @@ function showLoading(target) {
 function hideLoading(target) {
     $('.loading').hide(800);
     $(target).show(800);
-}
-
-function deactivateFullModal() {
-    $('.btn-modal-fullscreen').text('Ativar modo de escrita');
-    $('.btn-modal-fullscreen').removeClass('active');
-    $('.modal-dialog').removeClass('modal-fullscreen');
-    $('.cke_contents').css('height', '200px');
-}
-
-function activateFullModal() {
-    $('.btn-modal-fullscreen').text('Desativar modo de escrita');
-    $('.btn-modal-fullscreen').addClass('active');
-    $('.modal-dialog').addClass('modal-fullscreen');
-    $('.cke_contents').css('height', '400px');
 }
