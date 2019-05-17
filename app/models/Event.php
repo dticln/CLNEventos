@@ -23,6 +23,10 @@ class Event extends Model
 	public $updated;
 	public $created;
 
+	public static $NAME_LENGTH = 512;
+	public static $PLACE_LENGTH = 1024;
+	public static $DESCRIPTION_LENGTH = 102400;
+
 	public static function select_at_page($user, $limit, $page)
 	{
 		$offset = ((intval($page) - 1) * intval($limit));

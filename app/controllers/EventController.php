@@ -37,8 +37,8 @@ class EventController extends Controller
 	 *
 	 * Carrega todos os eventos de todos os usuários, quando o usuário tem permissão.
 	 *
-	 * Caso a variavel $_GET['event-search'] está presente, realiza a consulta com uma pesquisa.
-	 * Caso a variavel $_GET['event-page'] está presente, realiza a consulta na paginação específica
+	 * Caso a variável $_GET['event-search'] está presente, realiza a consulta com uma pesquisa.
+	 * Caso a variável $_GET['event-page'] está presente, realiza a consulta na paginação específica
 	 * seu valor padrão é 1; sendo assim, por padrão, recupera os resultados da primeira página.
 	 *
 	 * Ambas as variaveis ($_GET['event-search'] e $_GET['event-page']) podem estar presentes.
@@ -82,7 +82,7 @@ class EventController extends Controller
 	 *
 	 * POST - O método insere um novo evento no banco de dados através de uma
 	 * requisição Ajax.
-	 * Para uma inserção bem sucedida, a variavel $_POST deve possuir os campos:
+	 * Para uma inserção bem sucedida, a variável $_POST deve possuir os campos:
 	 * - new-event-name: nome do evento
 	 * - new-event-place: local onde o evento ocorrerá
 	 * - new-event-category: id da categoria (a categoria deve existir no banco de dados)
@@ -91,7 +91,7 @@ class EventController extends Controller
 	 * - new-event-body: corpo de descrição do evento
 	 * Realiza a chamada do método $this->insertion_procedure(...) para realizar o cadastramento.
 	 *
-	 * GET - Carrega o formulário de inserção de um novo evento no banco de dados
+	 * GET - Carrega o formulário de inserção de um novo evento do banco de dados
 	 * através de uma requisição Ajax.
 	 */
 	public function ajax_insert_action()
@@ -114,7 +114,8 @@ class EventController extends Controller
 					$infos['new-event-end'],
 					$infos['new-event-body']
 				);
-			} else {
+			} else
+{
 				$response = Res::arr('event_insert_fail');
 			}
 			$this->render_modal_response($response);
@@ -126,6 +127,24 @@ class EventController extends Controller
 		}
 	}
 
+	/**
+	 * Responsável pela atualização de um evento no banco de dados.
+	 *
+	 * POST - O método atualiza um evento no banco de dados através de uma
+	 * requisição Ajax.
+	 * Para uma atualização bem sucedida, a variável $_POST deve possuir os campos:
+	 * - update-event-name: nome do evento
+	 * - update-event-place: local onde o evento ocorrerá
+	 * - update-event-category: id da categoria (a categoria deve existir no banco de dados)
+	 * - update-event-start: data de início do evento
+	 * - update-event-end: data de término do evento (deve ser superior à data de início)
+	 * - update-event-body: corpo de descrição do evento
+	 * Realiza a chamada do método $this->update_procedure(...) para realizar a atualização.
+	 *
+	 * GET - Carrega o formulário de atualização de evento do banco de dados
+	 * através de uma requisição Ajax.
+	 * A requisição necessita ter, em sua URL, o id do evento que será atualizado.
+	 */
 	public function ajax_update_action($id)
 	{
 		if (Request::is_POST()) {
@@ -166,6 +185,19 @@ class EventController extends Controller
 		}
 	}
 
+	/**
+	 * Responsável pela exclusão de um evento no banco de dados.
+	 *
+	 * POST - O método exclui um evento no banco de dados através de uma
+	 * requisição Ajax.
+	 * Para uma exclusão bem sucedida, a variável $_POST deve possuir
+	 * o campo event-id (identificador do evento).
+	 * Realiza a chamada do método $this->exclusion_procedure(...) para realizar a atualização.
+	 *
+	 * GET - Carrega o formulário de confirmação de exclusão de evento do banco de dados
+	 * através de uma requisição Ajax.
+	 * A requisição necessita ter, em sua URL, o id do evento que será excluído.
+	 */
 	public function ajax_delete_action($id)
 	{
 		if (Request::is_POST())
@@ -184,14 +216,33 @@ class EventController extends Controller
 		http_response_code(400);
 	}
 
+	/**
+	 * Verificação de autenticação
+	 * Os usuários devem ter uma sessão ativa para acessar os métodos do controller.
+	 */
 	public function before()
 	{
 		if (!Auth::is_authenticated())
 		{
-			Request::redirect('login/do/&callback=' . $this->params->from_GET('PurePage'));
+			Request::redirect(
+				((PURE_ENV === 'development') ? 'login/do&callback=' : 'login/do/&callback=') .
+				$this->params->from_GET('PurePage')
+			);
 		}
 	}
 
+	/**
+	 * Realiza a inserção de um novo evento na base de dados,
+	 * retornando um array com uma mensagem de feedback para o usuário.
+	 *
+	 * @param string $name nome do evento
+	 * @param string $place local onde o evento ocorrerá
+	 * @param int $category_id id de uma categoria (deve estar presente no banco de dados)
+	 * @param string $start data de início do evento
+	 * @param string $end data de término do evento
+	 * @param string $body corpo de descrição do evento
+	 * @return array ['title' => 'Some title', 'body' => 'Some body'] feedback
+	 */
 	private function insertion_procedure($name, $place, $category_id, $start, $end, $body)
 	{
 		$database = Database::get_instance();
@@ -206,11 +257,11 @@ class EventController extends Controller
 				return $response;
 			}
 			$new = new Event();
-			$new->name = $name;
-			$new->place = $place;
+			$new->name = substr($name, 0, Event::$NAME_LENGTH);
+			$new->place = substr($place, 0, Event::$PLACE_LENGTH);
 			$new->starts_at = date('Y-m-d H:i:s', $start_date);
 			$new->ends_at = date('Y-m-d H:i:s', $end_date);
-			$new->description = $body;
+			$new->description = substr($body, 0, Event::$DESCRIPTION_LENGTH);
 			$new->owner = $this->session->get('uinfo')->id;
 			$category = Category::find($category_id);
 			if ($category)
@@ -237,6 +288,19 @@ class EventController extends Controller
 		return $response;
 	}
 
+	/**
+	 * Realiza a atualização de um evento na base de dados,
+	 * retornando um array com uma mensagem de feedback para o usuário.
+	 *
+	 * @param int $id identificador do evento
+	 * @param string $name nome do evento
+	 * @param string $place local onde o evento ocorrerá
+	 * @param int $category_id id de uma categoria (deve estar presente no banco de dados)
+	 * @param string $start data de início do evento
+	 * @param string $end data de término do evento
+	 * @param string $body corpo de descrição do evento
+	 * @return array ['title' => 'Some title', 'body' => 'Some body'] feedback
+	 */
 	private function update_procedure($id, $name, $place, $category_id, $start, $end, $body)
 	{
 		$database = Database::get_instance();
@@ -252,11 +316,11 @@ class EventController extends Controller
 					$response = Res::arr('event_update_date_fail');
 					return $response;
 				}
-				$event->name = $name;
-				$event->place = $place;
+				$event->name = substr($name, 0, Event::$NAME_LENGTH);
+				$event->place = substr($place, 0, Event::$PLACE_LENGTH);
 				$event->starts_at = date('Y-m-d H:i:s', $start_date);
 				$event->ends_at = date('Y-m-d H:i:s', $end_date);
-				$event->description = $body;
+				$event->description = substr($body, 0, Event::$DESCRIPTION_LENGTH);
 				$event->owner = $this->session->get('uinfo')->id;
 				$event->updated = date('Y-m-d H:i:s', strtotime('now'));
 				$category = Category::find($category_id);
@@ -288,6 +352,12 @@ class EventController extends Controller
 		return $response;
 	}
 
+	/**
+	 * Realiza a exclusão de um evento na base de dados com base no identificador.
+	 *
+	 * @param int $id identificador de evento
+	 * @return array ['title' => 'Some title', 'body' => 'Some body'] feedback
+	 */
 	private function exclusion_procedure($id)
 	{
 		$response = [];
@@ -322,6 +392,12 @@ class EventController extends Controller
 		return $response;
 	}
 
+	/**
+	 * Cria o código HTML que será inflado em um modal.
+	 * Recebe um array com título e corpo, conforme @param.
+	 *
+	 * @param array $package ['title' => 'Some title', 'body' => 'Some body']
+	 */
 	private function render_modal_response($package)
 	{
 		$this->data['title'] = $package['title'];
