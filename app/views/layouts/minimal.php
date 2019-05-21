@@ -5,7 +5,7 @@ use Pure\Utils\Res;
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <?= $this->render_component('heads/minimal'); ?>
 <body>
 	<?= $this->render_component('govbar'); ?>

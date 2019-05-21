@@ -7,7 +7,7 @@ namespace App\Views\Pages;
 
 <div class="row content-row">
 	<div class="col-md-2">
-		<button type="button" class="btn btn-custom tab-event" style="margin-bottom: 10px" aria-label="Atualizar página de eventos">
+		<button type="button" class="btn btn-custom tab-event" style="margin-bottom: 10px" aria-label="Atualizar pÃ¡gina de eventos">
 			<span class="glyphicon glyphicon-refresh"></span>
 		</button>
 		<button type="button" class="btn btn-custom btn-event-insert" style="margin-bottom: 10px" aria-label="Adicionar um novo evento">
@@ -33,13 +33,13 @@ namespace App\Views\Pages;
 			<?php if($is_moderator): ?>
 				<div class="alert alert-info alert-dismissible">
 					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-					<strong>Você possui permissão de moderador:</strong> você pode cadastrar,
-					visualizar, editar e excluír eventos cadastrados por você e por outros usuários.
+					<strong>VocÃª possui permissÃ£o de moderador:</strong> vocÃª pode cadastrar,
+					visualizar, editar e excluÃ­r eventos cadastrados por vocÃª e por outros usuÃ¡rios.
 				</div>
 			<?php else: ?>
 				<div class="alert alert-info alert-dismissible">
 					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-					<strong>Olá!</strong> Aqui você pode cadastrar novos eventos ou editar e excluír os seus eventos cadastrados.
+					<strong>OlÃ¡!</strong> Aqui vocÃª pode cadastrar novos eventos ou editar e excluÃ­r os seus eventos cadastrados.
 				</div>
 			<?php endif; ?>
 			<?= $this->render_component('loading'); ?>

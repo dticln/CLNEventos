@@ -21,7 +21,7 @@ use Pure\Utils\Res;
 
 <?php foreach($events as $event): ?>
 	<div id="accordion" class="panel-group" role="tablist" aria-multiselectable="true">
-		<!-- Início da área de Cabeçalho do Evento -->
+		<!-- InÃ­cio da Ã¡rea de CabeÃ§alho do Evento -->
 		<div class="panel-heading" role="tab"
 			<?= $event->finished ? 'style="background-color: #606060"' : '' ?>
 			id="heading-event-<?= $event->id ?>">
@@ -41,7 +41,7 @@ use Pure\Utils\Res;
 						<?= Helpers::str_limit($event->name, 25) ?>
 					</span>
 				</a>
-				<!-- Início para área de informações para grandes resoluções -->
+				<!-- InÃ­cio para Ã¡rea de informaÃ§Ãµes para grandes resoluÃ§Ãµes -->
 				<span style="float:right" class="visible-lg">
 					<small class="badge" style="background-color: <?= $event->color ?>">
 						<?= $event->category_name ?>
@@ -52,7 +52,7 @@ use Pure\Utils\Res;
 					<span class="icon" tabindex="0">
 						<?= Helpers::interval_format($event->starts_at, $event->ends_at) ?> 
 					</span>
-					<?php if(!$event->finished): ?>
+					<?php if(!$event->finished || $is_moderator): ?>
 						<span class="icon glyphicon glyphicon-pencil btn-event-edit"
 							id="<?= $event->id ?>"
 							tabindex="0"
@@ -69,8 +69,8 @@ use Pure\Utils\Res;
 						</small>
 					<?php endif ?>
 				</span>
-				<!-- Término para área de informações para grandes resoluções -->
-				<!-- Início para área de informações para resolução média -->
+				<!-- TÃ©rmino para Ã¡rea de informaÃ§Ãµes para grandes resoluÃ§Ãµes -->
+				<!-- InÃ­cio para Ã¡rea de informaÃ§Ãµes para resoluÃ§Ã£o mÃ©dia -->
 				<span class="visible-md">
 					<small style="display: inline-block">
 						<span class="icon glyphicon glyphicon-time"></span>
@@ -79,7 +79,7 @@ use Pure\Utils\Res;
 						</span>
 					</small>
 					<span style="float:right;">
-						<?php if(!$event->finished): ?>
+						<?php if(!$event->finished || $is_moderator): ?>
 							<span class="icon glyphicon glyphicon-pencil btn-event-edit"
 								id="<?= $event->id ?>"
 								tabindex="0"
@@ -97,8 +97,8 @@ use Pure\Utils\Res;
 						<?php endif ?>
 					</span>
 				</span>
-				<!-- Término para área de informações para resolução média -->
-				<!-- Início para área de informações para celulares -->
+				<!-- TÃ©rmino para Ã¡rea de informaÃ§Ãµes para resoluÃ§Ã£o mÃ©dia -->
+				<!-- InÃ­cio para Ã¡rea de informaÃ§Ãµes para celulares -->
 				<span class="visible-sm visible-xs">
 					<small style="display: inline-block">
 						<span class="icon glyphicon glyphicon-time"></span>
@@ -107,7 +107,7 @@ use Pure\Utils\Res;
 						</span>
 					</small>
 					<span style="margin-top: 20px;">
-						<?php if(!$event->finished): ?>
+						<?php if(!$event->finished || $is_moderator): ?>
 						<span class="icon glyphicon glyphicon-pencil btn-event-edit"
 							id="<?= $event->id ?>"
 							tabindex="0"
@@ -125,12 +125,12 @@ use Pure\Utils\Res;
 						<?php endif ?>
 					</span>
 				</span>
-				<!-- Término para área de informações para celulares -->
+				<!-- TÃ©rmino para Ã¡rea de informaÃ§Ãµes para celulares -->
 			</div>
 		</div>
-		<!-- Término da área de Cabeçalho do Evento -->
+		<!-- TÃ©rmino da Ã¡rea de CabeÃ§alho do Evento -->
 
-		<!-- Início da área de Corpo do Evento -->
+		<!-- InÃ­cio da Ã¡rea de Corpo do Evento -->
 		<div id="collapse-event-<?= $event->id ?>" 
 			class="panel-collapse collapse" 
 			role="tabpanel" 
@@ -138,13 +138,12 @@ use Pure\Utils\Res;
 			<div class="panel-body">
 				<p>
 					<small>
-						<span aria-label="Localização do Evento" tabindex="0">
+						<span aria-label="LocalizaÃ§Ã£o do Evento" tabindex="0" class="panel-head-content">
 							<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
 							<?= $event->place ?>
 						</span>
 						<?php if($is_moderator): ?>
-							<br />
-							<span aria-label="Usuário que cadastrou o Evento" tabindex="0">
+							<span aria-label="UsuÃ¡rio que cadastrou o Evento" tabindex="0" class="panel-head-content">
 								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 								<?= $event->user ?>
 							</span>
@@ -157,7 +156,7 @@ use Pure\Utils\Res;
 				</div>
 			</div>
 		</div>
-		<!-- Final da área de Corpo do Evento -->
+		<!-- Final da Ã¡rea de Corpo do Evento -->
 	</div>
 <?php endforeach; ?>
 
