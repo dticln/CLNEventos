@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\Category;
 use Pure\Db\Database;
 use Pure\Utils\Session;
+use App\Utils\UFRGSAuth;
 
 /**
  * Controller utilizado na administração de eventos
@@ -23,7 +24,8 @@ class EventController extends Controller
 	 */
 	public function index_action()
 	{
-		$this->render('event/index', 'dashboard');
+		$this->data['is_moderator'] = UFRGSAuth::has_permission(PERMISSION_MODERATOR);
+ 		$this->render('event/index', 'dashboard');
 	}
 
 	/**
@@ -49,31 +51,27 @@ class EventController extends Controller
 		$page = $this->params->from_GET('event-page');
 		$page = ($page) ? intval($page) : 1;
 		$this->data['per_page'] = 10;
-		$user = (PURE_ENV === 'production') ?
-			Session::get_instance()->get('uinfo')->id :
-			Session::get_instance()->get('uid');
-		if($search) {
-			$this->data['events'] = Event::select_at_page_where(
-				$user,
-				trim($search),
-				$this->data['per_page'],
+		$this->data['events'] = [];
+
+		if (UFRGSAuth::has_permission(PERMISSION_MODERATOR)) {
+			$this->set_events_to_moderator(
+					$search,
+					$page
+				);
+		} else {
+			$this->set_events_to_user(
+				Session::get_instance()->get('uinfo')->id,
+				$search,
 				$page
 			);
-			$this->data['count'] = Event::select_count_where($user, trim($search));
-		} else
-		{
-			$this->data['events'] = Event::select_at_page(
-				$user,
-				$this->data['per_page'],
-				$page
-			);
-			$this->data['count'] = Event::select_count($user);
 		}
+
 		foreach($this->data['events'] as $event) {
 			$event->finished = (strtotime($event->ends_at) <= strtotime('now'));
 		}
 		$this->data['page'] = $page;
 		$this->data['search'] = trim($search);
+		$this->data['is_moderator'] = UFRGSAuth::has_permission(PERMISSION_MODERATOR);
 		$this->render_ajax('event/list');
 	}
 
@@ -115,7 +113,7 @@ class EventController extends Controller
 					$infos['new-event-body']
 				);
 			} else
-{
+			{
 				$response = Res::arr('event_insert_fail');
 			}
 			$this->render_modal_response($response);
@@ -175,7 +173,7 @@ class EventController extends Controller
 			exit();
 		} else {
 			$this->data['event'] = Event::find(intval($id));
-			if($this->data['event']) {
+			if($this->data['event'] && Event::can_user_update($id)) {
 				$this->data['categories'] = Category::find();
 				$this->render_ajax('event/update');
 				exit();
@@ -210,8 +208,10 @@ class EventController extends Controller
 		else if (intval($id))
 		{
 			$this->data['event'] = Event::find(intval($id));
-			$this->render_ajax('event/delete');
-			exit();
+			if($this->data['event'] && Event::can_user_update($id)) {
+				$this->render_ajax('event/delete');
+				exit();
+			}
 		}
 		http_response_code(400);
 	}
@@ -308,7 +308,7 @@ class EventController extends Controller
 		try {
 			$database->begin();
 			$event = Event::find($id);
-			if($event) {
+			if($event && Event::can_user_update($event->id)) {
 				$start_date = strtotime(str_replace('/', '-', $start));
 				$end_date = strtotime(str_replace('/', '-', $end));
 				if ($start_date >= $end_date) {
@@ -321,7 +321,6 @@ class EventController extends Controller
 				$event->starts_at = date('Y-m-d H:i:s', $start_date);
 				$event->ends_at = date('Y-m-d H:i:s', $end_date);
 				$event->description = substr($body, 0, Event::$DESCRIPTION_LENGTH);
-				$event->owner = $this->session->get('uinfo')->id;
 				$event->updated = date('Y-m-d H:i:s', strtotime('now'));
 				$category = Category::find($category_id);
 				if ($category) {
@@ -337,12 +336,12 @@ class EventController extends Controller
 					$database->rollback();
 					$response = Res::arr('event_update_fail');
 				}
+				$database->commit();
 			} else
 			{
 				$database->rollback();
 				$response = Res::arr('event_update_fail');
 			}
-			$database->commit();
 		}
 		catch(\Exception $ex)
 		{
@@ -367,7 +366,7 @@ class EventController extends Controller
 			try {
 				$database->begin();
 				$event = Event::find($id);
-				if ($event)
+				if ($event && Event::can_user_update($event->id))
 				{
 					Event::delete()->where(['id' => $event->id])->execute();
 					$s = Res::arr('event_delete_success');
@@ -375,13 +374,13 @@ class EventController extends Controller
 						'title' => $s['title'],
 						'body' => $s['body_p1'] . $event->name .  $s['body_p2']
 					];
+					$database->commit();
 				}
 				else
 				{
 					$database->rollback();
 					$response = Res::arr('event_delete_fail');
 				}
-				$database->commit();
 			}
 			catch(\Exception  $ex)
 			{
@@ -405,5 +404,43 @@ class EventController extends Controller
 		$this->data['modal'] = true;
 		$this->render_ajax('response');
 		exit();
+	}
+
+	private function set_events_to_user($user, $search, $page) {
+		if($search) {
+			$this->data['events'] = Event::select_at_usr_page_where(
+				$user,
+				trim($search),
+				$this->data['per_page'],
+				$page
+			);
+			$this->data['count'] = Event::select_usr_count_where($user, trim($search));
+		} else
+		{
+			$this->data['events'] = Event::select_at_usr_page(
+				$user,
+				$this->data['per_page'],
+				$page
+			);
+			$this->data['count'] = Event::select_usr_count($user);
+		}
+	}
+
+	private function set_events_to_moderator($search, $page) {
+		if($search) {
+			$this->data['events'] = Event::select_at_page_where(
+				trim($search),
+				$this->data['per_page'],
+				$page
+			);
+			$this->data['count'] = Event::select_count_where(trim($search));
+		} else
+		{
+			$this->data['events'] = Event::select_at_page(
+				$this->data['per_page'],
+				$page
+			);
+			$this->data['count'] = Event::select_count();
+		}
 	}
 }

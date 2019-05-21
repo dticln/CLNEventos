@@ -14,7 +14,6 @@ use Pure\Utils\Res;
 			<div class="col-md-12">
 				<h1 class="header-title">Agendamento de Eventos</h1>
 				<h2>Eventos cadastrados</h2>
-				<p>Você pode visualizar, editar e excluír todos os eventos cadastrados por você.</p>
 			</div>
 		</div>
 		<?= $this->content(); ?>

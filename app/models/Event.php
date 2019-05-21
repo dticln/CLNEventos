@@ -1,7 +1,9 @@
 <?php
 namespace App\Models;
 use Pure\Bases\Model;
+use App\Utils\UFRGSAuth;
 use App\Utils\Helpers;
+use Pure\Utils\Session;
 
 /**
  * Representa um evento na camada de Modelagem,
@@ -27,7 +29,7 @@ class Event extends Model
 	public static $PLACE_LENGTH = 1024;
 	public static $DESCRIPTION_LENGTH = 102400;
 
-	public static function select_at_page($user, $limit, $page)
+	public static function select_at_usr_page($user, $limit, $page)
 	{
 		$offset = ((intval($page) - 1) * intval($limit));
 		return Event::select(['event.*','usr.name user','ctg.name category_name', 'ctg.basecolor color'])
@@ -42,7 +44,7 @@ class Event extends Model
 			->execute();
 	}
 
-	public static function select_at_page_where($user, $where, $limit, $page)
+	public static function select_at_usr_page_where($user, $where, $limit, $page)
 	{
 		$offset = ((intval($page) - 1) * intval($limit));
 		return Event::select(['event.*','usr.name user','ctg.name category_name', 'ctg.basecolor color'])
@@ -57,17 +59,60 @@ class Event extends Model
 			->execute();
 	}
 
-	public static function select_count($user)
+	public static function select_usr_count($user)
 	{
 		return self::select('COUNT(*) as count')
 			->where(['event.owner' => $user])
 			->execute()[0]->count;
 	}
 
-	public static function select_count_where($user, $where)
+	public static function select_usr_count_where($user, $where)
 	{
 		return self::select('COUNT(*) as count')
 				->where_like(['name' => '%'.$where.'%', 'event.owner' => $user])
+				->execute()[0]->count;
+	}
+
+
+	public static function select_at_page($limit, $page)
+	{
+		$offset = ((intval($page) - 1) * intval($limit));
+		return Event::select(['event.*','usr.name user','ctg.name category_name', 'ctg.basecolor color'])
+			->join('user usr')
+			->on('event.owner = usr.id')
+			->join('category ctg')
+			->on('event.category = ctg.id')
+			->order_by(['event.ends_at' => 'DESC'])
+			->limit($limit)
+			->offset(intval($offset))
+			->execute();
+	}
+
+	public static function select_at_page_where($where, $limit, $page)
+	{
+		$offset = ((intval($page) - 1) * intval($limit));
+		return Event::select(['event.*','usr.name user','ctg.name category_name', 'ctg.basecolor color'])
+			->join('user usr')
+			->on('event.owner = usr.id')
+			->join('category ctg')
+			->on('event.category = ctg.id')
+			->where_like(['event.name' => '%' . $where . '%'])
+			->order_by(['event.ends_at' => 'DESC'])
+			->limit($limit)
+			->offset(intval($offset))
+			->execute();
+	}
+
+	public static function select_count()
+	{
+		return self::select('COUNT(*) as count')
+			->execute()[0]->count;
+	}
+
+	public static function select_count_where($where)
+	{
+		return self::select('COUNT(*) as count')
+				->where_like(['name' => '%'.$where.'%'])
 				->execute()[0]->count;
 	}
 
@@ -86,5 +131,24 @@ class Event extends Model
 				ORDER BY ev.ends_at DESC'
 		)->execute();
 	}
+
+	/**
+	public static function can_user_delete($id) {
+		if (UFRGSAuth::has_permission(PERMISSION_MODERATOR)) {
+			return true;
+		}
+		$event = Event::find(intval($id));
+		return ($event && $event->owner == Session::get_instance()->get('uinfo')->id);
+	}
+	*/
+
+	public static function can_user_update($id) {
+		if (UFRGSAuth::has_permission(PERMISSION_MODERATOR)) {
+			return true;
+		}
+		$event = Event::find(intval($id));
+		return ($event && $event->owner == Session::get_instance()->get('uinfo')->id);
+	}
+
 
 }

@@ -1,2 +1,3 @@
 <?php
+define('PERMISSION_MODERATOR', '0f2943d2c240c7aab85cdd4f31f7d8d352b80c832f642c9af465f2bcb1c028d3');
 ?>

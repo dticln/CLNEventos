@@ -6,7 +6,7 @@ use Pure\Utils\Res;
 
 <?php if($search): ?>
 <div class="alert alert-info">
-	<?= Res::str('search_for') ?> "<span class="article-current-search"><?= $search ?></span>".
+	<?= Res::str('search_for') ?> "<span class="event-current-search"><?= $search ?></span>".
 	<small style="font-size: 10px">
 		<?= Res::str('search_w') ?> <?= $count ?> <?= Res::str('search_w_event') ?>
 	</small>
@@ -136,12 +136,19 @@ use Pure\Utils\Res;
 			role="tabpanel" 
 			aria-labelledby="heading-art-<?= $event->id ?>">
 			<div class="panel-body">
-				<p class="category-infos">
+				<p>
 					<small>
 						<span aria-label="Localização do Evento" tabindex="0">
 							<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
 							<?= $event->place ?>
 						</span>
+						<?php if($is_moderator): ?>
+							<br />
+							<span aria-label="Usuário que cadastrou o Evento" tabindex="0">
+								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+								<?= $event->user ?>
+							</span>
+						<?php endif; ?>
 					</small>
 				</p>
 				<hr />

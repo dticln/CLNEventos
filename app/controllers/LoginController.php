@@ -21,6 +21,14 @@ use App\Utils\Helpers;
 class LoginController extends Controller
 {
 
+	/**
+	 * Realiza o reset da senha utilizada na autenticação do banco de dados 
+	 * de desenvolvimento
+	 * 
+	 * Esse método somente é utilizado em ambiente de desenvolvimento.
+	 * 
+	 * @param int $username 
+	 */
 	public function reset_action($username)
 	{
 		if(PURE_ENV === 'development' && intval($username)){
